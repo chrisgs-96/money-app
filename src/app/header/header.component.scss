@@ -1,0 +1,40 @@
+.navbar-container {
+    & {
+        width: 100%;
+        padding: 0px 48px;
+        background-color: rgb(74, 143, 120);
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+    & .title {
+        color: white;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 36px;
+        padding-right: 24px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        display: block;
+        width: max-content;
+        border-right: 5px solid white;
+    }
+    & .pages {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        padding-left: 32px;
+        justify-content: flex-start;
+    }
+    & .pages span {
+        color: white;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 400;
+        cursor: pointer;
+    }
+    & .pages span.active {
+        font-weight: bold;
+    }
+
+}
