@@ -8,6 +8,8 @@ import { NgxsModule } from '@ngxs/store';
 import { TransactionsPageComponent } from './transactions-page/transactions-page.component';
 import { TransactionComponent } from './transactions-page/transaction/transaction.component';
 import { TransactionsGroupComponent } from './transactions-page/transactions-group/transactions-group.component';
+import { NewTransactionComponent } from './new-transaction/new-transaction.component';
+import { TransactionsState } from './state/transactions/transactions.state';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,13 @@ import { TransactionsGroupComponent } from './transactions-page/transactions-gro
     HeaderComponent,
     TransactionsPageComponent,
     TransactionComponent,
-    TransactionsGroupComponent
+    TransactionsGroupComponent,
+    NewTransactionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([])
+    NgxsModule.forRoot([TransactionsState])
   ],
   providers: [],
   bootstrap: [AppComponent]

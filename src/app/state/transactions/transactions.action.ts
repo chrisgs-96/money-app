@@ -6,4 +6,9 @@ export namespace Transactions {
         static readonly type = '[Categories] Add';
         constructor(public payload: { value: any }) { }
     }
+
+    export class Fetch {
+        static readonly type = '[Categories] Fetch';
+        constructor() { }
+    }
 }
