@@ -12,3 +12,8 @@ export interface TransactionsContainer {
     totalIncome: number,
     totalOutcome: number,
 }
+
+export interface GroupedTransactionsModel {
+    transactions: {[key: string]: TransactionsContainer},
+    dateOrder: string[]
+}

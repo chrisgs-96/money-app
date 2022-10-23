@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionModel, TransactionsContainer } from '../header/models/transaction.model';
+import { GroupedTransactionsModel, TransactionModel, TransactionsContainer } from '../header/models/transaction.model';
 
 @Component({
   selector: 'app-transactions-page',
@@ -40,12 +40,29 @@ export class TransactionsPageComponent implements OnInit {
       date: new Date(2020, 10, 4),
     },
     {
+      name: 'Transaction #8',
+      amount: 20.03,
+      isIncome: false,
+      date: new Date(2020, 10, 4),
+    },
+    {
+      name: 'Transaction #9',
+      amount: 30.51,
+      isIncome: true,
+      date: new Date(2020, 10, 4),
+    },
+    {
       name: 'Transaction #5',
       amount: 20.23,
       isIncome: false,
       date: new Date(2020, 1, 14),
     },
   ]
+  groupedTransactions: GroupedTransactionsModel;
+
+  log() {
+    console.log(this.groupedTransactions)
+  }
 
   sortFunc = (a: TransactionModel, b: TransactionModel) => {
     // Turn your strings into dates, and then subtract them
@@ -56,28 +73,22 @@ export class TransactionsPageComponent implements OnInit {
     return bDate - aDate;
   }
 
-  sortTransactions(transactions: TransactionModel[]) {
-    // transactions: TransactionModel[],
-    // month: number,
-    // year: number,
-    // totalIncome: number,
-    // totalOutcome: number,
+  safeAdd = (a: number, b: number) => {
+    return parseFloat((a + b).toFixed(2));
+  }
 
-    // --------------------
-    // {
-    // name: 'Transaction #2',
-    // amount: 15,
-    // isIncome: false,
-    // date: new Date(2022,1,14),
-    //   },
+  sortTransactions(transactions: TransactionModel[]) {
     let _transactions = transactions.sort((a, b) => this.sortFunc(a, b));
-    let groupedTransactions: any = {}
-    let dateOrder: string[] = [];
-    _transactions.forEach(tran => {
+    let groupedTransactions: GroupedTransactionsModel = {
+      transactions: [] as any,
+      dateOrder: []
+    };
+    _transactions.forEach((tran: TransactionModel) => {
       let id = tran.date.getMonth() + '/' + tran.date.getFullYear();
-      if (!groupedTransactions[id]) {
-        dateOrder.push(id);
-        groupedTransactions[id] = {
+      console.log('sad', id, groupedTransactions)
+      if (!groupedTransactions.transactions[id]) {
+        groupedTransactions.dateOrder.push(id);
+        groupedTransactions.transactions[id] = {
           transactions: [tran],
           month: tran.date.getMonth(),
           year: tran.date.getFullYear(),
@@ -85,16 +96,18 @@ export class TransactionsPageComponent implements OnInit {
           totalOutcome: !tran.isIncome ? tran.amount : 0,
         }
       } else {
-        groupedTransactions[id].totalIncome += tran.isIncome ? tran.amount : 0;
-        groupedTransactions[id].totalOutcome = !tran.isIncome ? tran.amount : 0
-        groupedTransactions[id].transactions.push(tran);
+        if (tran.isIncome)
+          groupedTransactions.transactions[id].totalIncome = this.safeAdd(groupedTransactions.transactions[id].totalIncome, tran.amount);
+        else
+          groupedTransactions.transactions[id].totalOutcome = this.safeAdd(groupedTransactions.transactions[id].totalOutcome, tran.amount);
+        groupedTransactions.transactions[id].transactions.push(tran);
       }
     })
-    return { groupedTransactions, dateOrder };
+    return groupedTransactions;
   }
 
   constructor() {
-    this.sortTransactions(this.transactions);
+    this.groupedTransactions = this.sortTransactions(this.transactions);
   }
 
   ngOnInit(): void {

@@ -1,0 +1,39 @@
+.transactions-group {
+    & {
+        max-width: 678px;
+        margin: auto;
+        box-sizing: border-box;
+        margin-top: 16px;
+    }
+
+    & .header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        line-height: 29px;
+        margin: auto;
+        gap: 24px;
+
+        & .v-flex {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            width: max-content;
+            margin: auto;
+            text-align: center;
+        }
+
+        & .v-flex .title {
+            color: black;
+            font-size: 14px;
+        }
+
+        & .income {
+            color: green;
+        }
+
+        & .outcome {
+            color: red;
+        }
+    }
+}

@@ -1,4 +1,6 @@
-<p>transactions-page works!</p>
-<div class="transactions-list">
-    <app-transaction *ngFor="let transaction of transactions" [transaction]="transaction"></app-transaction>
+<div class="transactions-list" *ngIf="transactions">
+    <!-- <app-transaction *ngFor="let transaction of transactions" [transaction]="transaction"></app-transaction> -->
+    <app-transactions-group *ngFor="let transactionsMonth of groupedTransactions?.dateOrder" [transactions]="groupedTransactions.transactions[transactionsMonth]">
+    </app-transactions-group>
 </div>
+<button (click)="log()">log transactions</button>
