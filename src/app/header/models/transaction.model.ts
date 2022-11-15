@@ -1,37 +1,47 @@
 export interface TransactionModel {
-    name: string,
-    amount: number,
-    isIncome: boolean,
-    date: Date,
-    category?: string;
+  name: string;
+  amount: number;
+  isIncome: boolean;
+  date: Date;
+  category?: string;
 }
 
 export interface TransactionsContainer {
-    transactions: TransactionModel[],
-    month: number,
-    year: number,
-    totalIncome: number,
-    totalOutcome: number,
+  transactions: TransactionModel[];
+  month: number;
+  year: number;
+  totalIncome: number;
+  totalOutcome: number;
+  summary?: any;
 }
 
 export interface GroupedTransactionsModel {
-    transactions: {[key: string]: TransactionsContainer},
-    dateOrder: string[]
+  transactions: { [key: string]: TransactionsContainer };
+  dateOrder: string[];
 }
 
 export interface TransactionsStateModel {
-    transactionsRaw: TransactionModel[],
-    transactionsGrouped: GroupedTransactionsModel,
+  transactionsRaw: TransactionModel[];
+  transactionsGrouped: GroupedTransactionsModel;
 }
 
 export interface TransactionAddPayload {
-    value: TransactionModel;
+  value: TransactionModel;
 }
 
 export interface CategoriesStateModel {
-    categories: string[]
+  categories: CategoryModel[];
 }
 
 export interface CategoryModel {
-    name: string;
+  name: string;
+}
+
+export interface LoaderStateModel {
+  isVisible: boolean;
+}
+
+export interface ModalStateModel {
+  isVisible: boolean;
+  message: string;
 }

@@ -21,6 +21,13 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { CategoriesState } from './state/categories/categories.state';
 import { CategoriesComponent } from './new-transaction/categories/categories.component';
 import { MultiSelectionButtonComponent } from './common/components/multi-selection-button/multi-selection-button.component';
+import { TransactionsSummaryComponent } from './transactions-summary/transactions-summary.component';
+import { CategoriesManagementComponent } from './categories-management/categories-management.component';
+import { FormsModule } from '@angular/forms';
+import { LoaderState } from './state/loader/loader.state';
+import { LoaderComponent } from './loader/loader.component';
+import { ModalComponent } from './modal/modal.component';
+import { ModalState } from './state/modal/modal.state';
 
 @NgModule({
   declarations: [
@@ -34,13 +41,23 @@ import { MultiSelectionButtonComponent } from './common/components/multi-selecti
     IsIncomeButtonsComponent,
     CategoriesComponent,
     MultiSelectionButtonComponent,
+    TransactionsSummaryComponent,
+    CategoriesManagementComponent,
+    LoaderComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([TransactionsState, CategoriesState]),
+    NgxsModule.forRoot([
+      TransactionsState,
+      CategoriesState,
+      LoaderState,
+      ModalState,
+    ]),
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     AngularFireModule.initializeApp(
       environment.firebaseConfig,
       'money-manager'

@@ -1,0 +1,13 @@
+<div *ngIf="categories$ | async as categories">
+  <div
+    (click)="deleteCategory(category.name)"
+    class="category"
+    *ngFor="let category of categories"
+  >
+    {{ category.name }}
+  </div>
+</div>
+<div>
+  <input [(ngModel)]="categoryName" type="text" />
+  <button (click)="addCategory()">Add</button>
+</div>
