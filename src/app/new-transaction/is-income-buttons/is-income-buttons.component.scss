@@ -1,0 +1,35 @@
+.container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50% 50%;
+
+  &_option {
+    width: 100%;
+    padding: 4px 16px;
+    background-color: white;
+    border-radius: 8px 0px 0px 8px;
+    border: 1px solid #4a8f78;
+    box-sizing: border-box;
+    color: #4a8f78;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+  }
+
+  &_option:hover:not(.selected) {
+    background-color: #4a8f78;
+    color: white;
+    opacity: 0.4;
+  }
+
+  &_option:last-of-type {
+    border-radius: 0px 8px 8px 0px;
+  }
+
+  &_option.selected {
+    background-color: #4a8f78;
+    color: white;
+  }
+}

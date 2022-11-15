@@ -10,6 +10,10 @@ import { TransactionComponent } from './transactions-page/transaction/transactio
 import { TransactionsGroupComponent } from './transactions-page/transactions-group/transactions-group.component';
 import { NewTransactionComponent } from './new-transaction/new-transaction.component';
 import { TransactionsState } from './state/transactions/transactions.state';
+import { ReactiveFormsModule  } from '@angular/forms';
+import { IsIncomeOutcomeComponent } from './is-income-outcome/is-income-outcome.component';
+import { IsIncomeButtonsComponent } from './new-transaction/is-income-buttons/is-income-buttons.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,12 +22,16 @@ import { TransactionsState } from './state/transactions/transactions.state';
     TransactionsPageComponent,
     TransactionComponent,
     TransactionsGroupComponent,
-    NewTransactionComponent
+    NewTransactionComponent,
+    IsIncomeOutcomeComponent,
+    IsIncomeButtonsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([TransactionsState])
+    NgxsModule.forRoot([TransactionsState]),
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

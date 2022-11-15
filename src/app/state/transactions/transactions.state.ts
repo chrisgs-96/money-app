@@ -1,7 +1,7 @@
 import { State, Action, StateContext, Select } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { Transactions } from './transactions.action';
-import { GroupedTransactionsModel, TransactionModel, TransactionsStateModel } from 'src/app/header/models/transaction.model';
+import { GroupedTransactionsModel, TransactionAddPayload, TransactionModel, TransactionsStateModel } from 'src/app/header/models/transaction.model';
 
 @State<TransactionsStateModel>({
     name: 'transactions',
@@ -18,9 +18,14 @@ import { GroupedTransactionsModel, TransactionModel, TransactionsStateModel } fr
 export class TransactionsState {
 
     @Action(Transactions.Add)
-    addTransaction(ctx: StateContext<TransactionsStateModel>) {
+    addTransaction(ctx: StateContext<TransactionsStateModel>, data: { payload: TransactionModel }) {
         const state = ctx.getState();
-        console.log('adding');
+        const groupedTransactions = this.addTransactionToGrouped(data.payload, state.transactionsGrouped);
+        ctx.setState({
+            ...state,
+            transactionsRaw: [...state.transactionsRaw, data.payload],
+            transactionsGrouped: groupedTransactions,
+        })
     }
 
     sortFunc = (a: TransactionModel, b: TransactionModel) => {
@@ -32,8 +37,32 @@ export class TransactionsState {
         return bDate - aDate;
     }
 
-    safeAdd = (a: number, b: number) => {
-        return parseFloat((a + b).toFixed(2));
+    safeAdd = (a: string | number, b: string | number) => {
+        let _a = typeof a === 'string' ? parseFloat(a) : a;
+        let _b = typeof b === 'string' ? parseFloat(b) : b;
+        return parseFloat((_a + _b).toFixed(2));
+    }
+
+    addTransactionToGrouped(transaction: TransactionModel, groupedTransactions: GroupedTransactionsModel) {
+        let id = transaction.date.getMonth() + '/' + transaction.date.getFullYear();
+        if (!groupedTransactions.transactions[id]) {
+            groupedTransactions.dateOrder.push(id);
+            groupedTransactions.transactions[id] = {
+                transactions: [transaction],
+                month: transaction.date.getMonth(),
+                year: transaction.date.getFullYear(),
+                totalIncome: transaction.isIncome ? transaction.amount : 0,
+                totalOutcome: !transaction.isIncome ? transaction.amount : 0,
+            }
+        } else {
+            console.log(groupedTransactions);
+            if (transaction.isIncome)
+                groupedTransactions.transactions[id].totalIncome = this.safeAdd(groupedTransactions.transactions[id].totalIncome, transaction.amount);
+            else
+                groupedTransactions.transactions[id].totalOutcome = this.safeAdd(groupedTransactions.transactions[id].totalOutcome, transaction.amount);
+            groupedTransactions.transactions[id].transactions.push(transaction);
+        }
+        return groupedTransactions;
     }
 
     groupTransactions(transactions: TransactionModel[]) {

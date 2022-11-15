@@ -1,1 +1,19 @@
-<p>new-transaction works!</p>
+<form [formGroup]="newTransactionForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" formControlName="name" name="name" />
+  </div>
+  <div>
+    <label for="amount">Amount:</label>
+    <input type="text" type="number" formControlName="amount" name="amount" />
+  </div>
+  <div>
+    <label for="isIncome">Income/Outcome:</label>
+    <app-is-income-buttons [form]="newTransactionForm"></app-is-income-buttons>
+  </div>
+  <div>
+    <label for="date">Date:</label>
+    <input type="date" formControlName="date" name="date" />
+  </div>
+  <button>submit</button>
+</form>

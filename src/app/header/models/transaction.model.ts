@@ -22,3 +22,7 @@ export interface TransactionsStateModel {
     transactionsRaw: TransactionModel[],
     transactionsGrouped: GroupedTransactionsModel,
 }
+
+export interface TransactionAddPayload {
+    value: TransactionModel;
+}
