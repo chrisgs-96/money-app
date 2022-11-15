@@ -3,6 +3,7 @@ export interface TransactionModel {
     amount: number,
     isIncome: boolean,
     date: Date,
+    category?: string;
 }
 
 export interface TransactionsContainer {
@@ -25,4 +26,12 @@ export interface TransactionsStateModel {
 
 export interface TransactionAddPayload {
     value: TransactionModel;
+}
+
+export interface CategoriesStateModel {
+    categories: string[]
+}
+
+export interface CategoryModel {
+    name: string;
 }

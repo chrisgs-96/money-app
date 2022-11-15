@@ -1,0 +1,10 @@
+<div class="container">
+  <app-multi-selection-button
+    *ngFor="let category of categories"
+    [isSelected]="form.value.category === category.name"
+    [onClick]="changeValue"
+    [value]="category.name"
+    [text]="category.name"
+    [form]="form"
+  ></app-multi-selection-button>
+</div>

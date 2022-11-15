@@ -1,7 +1,16 @@
-<div [class.negative]="!transaction.isIncome" [class.positive]="transaction.isIncome" class="transaction-row">
-    <div class="name">{{transaction.name}}</div>
-    <div class="date-amount-container">
-        <div class="date">{{transaction.date | date}}</div>
-        <div class="amount">{{transaction.amount | currency: 'EUR': 'symbol':'1.2-2'}}</div>
+<div
+  [class.negative]="!transaction.isIncome"
+  [class.positive]="transaction.isIncome"
+  class="transaction-row"
+>
+  <div class="vflex">
+    <div class="name">{{ transaction.name }}</div>
+    <div class="category">{{ transaction.category }}</div>
+  </div>
+  <div class="date-amount-container">
+    <div class="date">{{ transaction.date | date }}</div>
+    <div class="amount">
+      {{ transaction.amount | currency: "EUR":"symbol":"1.2-2" }}
     </div>
+  </div>
 </div>

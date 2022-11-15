@@ -1,8 +1,16 @@
-<div *ngIf="form?.value" class="container">
-  <div class="container_option" [ngClass]="{selected:form.value.isIncome}" (click)="changeSelection(true)">
-    Income
-  </div>
-  <div class="container_option" [ngClass]="{selected:!form.value.isIncome}" (click)="changeSelection(false)">
-    Outcome
-  </div>
+<div class="container">
+  <app-multi-selection-button
+    [isSelected]="!form.value.isIncome"
+    [onClick]="changeSelection"
+    [value]="false"
+    text="Outcome"
+    [form]="form"
+  ></app-multi-selection-button>
+  <app-multi-selection-button
+    [isSelected]="form.value.isIncome"
+    [onClick]="changeSelection"
+    [value]="true"
+    text="Income"
+    [form]="form"
+  ></app-multi-selection-button>
 </div>

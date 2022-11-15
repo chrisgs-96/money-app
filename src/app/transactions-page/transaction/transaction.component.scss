@@ -20,6 +20,17 @@
     &:hover {
         box-shadow: 5px 5px 10px rgba(0, 0, 0, .1);
     }
+    
+    & .vflex {
+        display: flex;
+        flex-direction: column;
+    }
+
+    & .category {
+        font-size: 12px;
+        line-height: 16px;
+        opacity: 0.6;
+    }
 
     &.negative {
         border-left: 14px solid darkred;

@@ -11,9 +11,14 @@
     <label for="isIncome">Income/Outcome:</label>
     <app-is-income-buttons [form]="newTransactionForm"></app-is-income-buttons>
   </div>
+  <div *ngIf="categories$ | async as categories">
+    <label for="isIncome">Category:</label>
+    <app-categories [categories]="categories" [form]="newTransactionForm"></app-categories>
+  </div>
   <div>
     <label for="date">Date:</label>
     <input type="date" formControlName="date" name="date" />
+    <app-choose-date-field></app-choose-date-field>
   </div>
   <button>submit</button>
 </form>

@@ -7,6 +7,8 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Transactions } from '../state/transactions/transactions.action';
 import { HttpClient } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Categories } from '../state/categories/categories.action';
 
 @Component({
   selector: 'app-transactions-page',
@@ -26,7 +28,7 @@ export class TransactionsPageComponent implements OnInit {
     console.log(this.groupedTransactions);
   }
 
-  constructor(private store: Store, private httpClient: HttpClient) {
+  constructor(private store: Store, private db: AngularFirestore) {
     this.transactions$.subscribe((data) => (this.transactions = data));
     this.groupedTransactions$.subscribe(
       (data) => (this.groupedTransactions = data)
@@ -37,8 +39,8 @@ export class TransactionsPageComponent implements OnInit {
     this.store.dispatch(new Transactions.Fetch());
   }
 
-
   ngOnInit(): void {
+    console.log('ngondestroy on components to unsubscribe');
     if (!this.transactions.length) this.fetchTransactions();
   }
 }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Transactions } from '../state/transactions/transactions.action';
+import { Observable } from 'rxjs';
+import { CategoryModel } from '../header/models/transaction.model';
+import { Categories } from '../state/categories/categories.action';
 
 @Component({
   selector: 'app-new-transaction',
@@ -9,6 +12,8 @@ import { Transactions } from '../state/transactions/transactions.action';
   styleUrls: ['./new-transaction.component.scss'],
 })
 export class NewTransactionComponent implements OnInit {
+  @Select((state: any) => state.categories.categories)
+  categories$: Observable<CategoryModel[]>;
   newTransactionForm: FormGroup;
 
   convertDateToString(date: Date): string {
@@ -19,6 +24,7 @@ export class NewTransactionComponent implements OnInit {
     this.newTransactionForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       amount: new FormControl(null, [Validators.required]),
+      category: new FormControl('Other',[Validators.required]),
       isIncome: new FormControl(false),
       date: new FormControl(this.convertDateToString(new Date()), [
         Validators.required,
@@ -26,16 +32,13 @@ export class NewTransactionComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(new Categories.Fetch());
+  }
 
   onSubmit() {
     if (this.newTransactionForm.status === 'VALID')
-      this.store.dispatch(
-        new Transactions.Add({
-          ...this.newTransactionForm.value,
-          date: new Date(this.newTransactionForm.value.date),
-        })
-      );
+      this.store.dispatch(new Transactions.Add(this.newTransactionForm.value));
     else alert('Please fill your form correctly');
   }
 }

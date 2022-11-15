@@ -1,0 +1,26 @@
+.btn {
+    width: 100%;
+    padding: 4px 16px;
+    background-color: white;
+    border: 1px solid #4a8f78;
+    box-sizing: border-box;
+    color: #4a8f78;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+    min-width: 150px;
+    border-radius: 8px;
+  }
+
+  .btn:hover:not(.selected) {
+    background-color: #4a8f78;
+    color: white;
+    opacity: 0.4;
+  }
+
+  .btn.selected {
+    background-color: #4a8f78;
+    color: white;
+  }
