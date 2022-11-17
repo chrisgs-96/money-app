@@ -2,6 +2,7 @@
   [class.negative]="!transaction.isIncome"
   [class.positive]="transaction.isIncome"
   class="transaction-row"
+  (click)="deleteTransaction()"
 >
   <div class="vflex">
     <div class="name">{{ transaction.name }}</div>

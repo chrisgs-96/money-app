@@ -14,13 +14,10 @@ export class CategoriesComponent implements OnInit {
   constructor() {}
 
   changeValue(val: string) {
-    console.log(this.form);
     this.form.patchValue({
       category: val,
     });
   }
 
-  ngOnInit(): void {
-    console.log(this.form)
-  }
+  ngOnInit(): void {}
 }

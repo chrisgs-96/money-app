@@ -3,5 +3,3 @@
     <app-transactions-group *ngFor="let transactionsMonth of (groupedTransactions)?.dateOrder" [transactions]="groupedTransactions.transactions[transactionsMonth]">
     </app-transactions-group>
 </div>
-<button (click)="log()">log transactions</button>
-<button (click)="fetchTransactions()">fetch transactions</button>

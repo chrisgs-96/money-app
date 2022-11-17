@@ -9,6 +9,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Categories } from './categories.action';
 import { state } from '@angular/animations';
 import { Loader } from '../loader/loader.action';
+import { Modal } from '../modal/modal.action';
 
 @State<CategoriesStateModel>({
   name: 'categories',
@@ -20,6 +21,22 @@ import { Loader } from '../loader/loader.action';
 export class CategoriesState {
   constructor(private db: AngularFirestore, private store: Store) {}
 
+  generateUniqSerial(): string {
+    console.log('generateUniqSerial and showModal in utils.js');
+    return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, (c) => {
+      const r = Math.floor(Math.random() * 16);
+      return r.toString(16);
+    });
+  }
+
+  showModal(message: string) {
+    this.store.dispatch(
+      new Modal.Show({
+        message,
+      })
+    );
+  }
+
   @Action(Categories.Add)
   addCategory(
     ctx: StateContext<CategoriesStateModel>,
@@ -27,16 +44,18 @@ export class CategoriesState {
   ) {
     this.store.dispatch(new Loader.Show());
     const state = ctx.getState();
-    let promise = new Promise<any>((resolve) => {
-      resolve(this.db.collection('categories').add(data.payload));
-    })
-      .then(() => {
-        ctx.setState({
-          ...state,
-          categories: [...state.categories, data.payload],
-        });
-      })
-      .finally(() => this.store.dispatch(new Loader.Hide()));
+    this.db
+      .collection('categories')
+      .add({ ...data.payload, id: this.generateUniqSerial() })
+      .catch(() =>
+        this.showModal(
+          'There was an error with adding the category ' + data.payload.name
+        )
+      )
+      .finally(() => {
+        this.store.dispatch(new Loader.Hide());
+        this.store.dispatch(new Categories.Fetch());
+      });
   }
 
   @Action(Categories.Remove)
@@ -45,28 +64,23 @@ export class CategoriesState {
     data: { payload: CategoryModel }
   ) {
     this.store.dispatch(new Loader.Show());
-    const state = ctx.getState();
     let subscription = this.db
-      .collection('categories', (ref) =>
-        ref.where('name', '==', data.payload.name)
-      )
+      .collection('categories', (ref) => ref.where('id', '==', data.payload.id))
       .get()
-      .subscribe((rows) =>
+      .subscribe((rows) => {
         rows.forEach((entry) => {
           entry.ref
             .delete()
-            .then(() => console.log('Deleted ok'))
-            .catch(() => console.log('Not ok'))
-            .finally(() => subscription.unsubscribe());
-          ctx.setState({
-            ...state,
-            categories: state.categories.filter(
-              (category: any) => category.name !== data.payload.name
-            ),
-          });
-          this.store.dispatch(new Loader.Hide());
-        })
-      );
+            .catch(() =>
+              this.showModal(
+                'Problem with deleting category ' + data.payload.name
+              )
+            );
+        });
+        subscription.unsubscribe();
+        this.store.dispatch(new Loader.Hide());
+        this.store.dispatch(new Categories.Fetch());
+      });
   }
 
   @Action(Categories.Fetch)
@@ -77,11 +91,9 @@ export class CategoriesState {
       .collection('categories')
       .valueChanges()
       .subscribe((data: any) => {
-        console.log(data);
-        const categories = data;
         ctx.setState({
           ...state,
-          categories,
+          categories: data,
         });
         this.store.dispatch(new Loader.Hide());
         subscription.unsubscribe();

@@ -1,4 +1,5 @@
 export interface TransactionModel {
+  id?: string;
   name: string;
   amount: number;
   isIncome: boolean;
@@ -34,6 +35,7 @@ export interface CategoriesStateModel {
 }
 
 export interface CategoryModel {
+  id?: string;
   name: string;
 }
 

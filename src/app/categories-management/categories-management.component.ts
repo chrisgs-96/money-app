@@ -22,8 +22,8 @@ export class CategoriesManagementComponent implements OnInit {
     this.store.dispatch(new Categories.Add({ name: this.categoryName }));
   }
 
-  deleteCategory(name: string) {
-    this.store.dispatch(new Categories.Remove({ name }));
+  deleteCategory(category: CategoryModel) {
+    this.store.dispatch(new Categories.Remove(category));
   }
 
   ngOnInit(): void {

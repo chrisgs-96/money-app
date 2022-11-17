@@ -1,6 +1,6 @@
 <div *ngIf="categories$ | async as categories">
   <div
-    (click)="deleteCategory(category.name)"
+    (click)="deleteCategory(category)"
     class="category"
     *ngFor="let category of categories"
   >

@@ -10,6 +10,7 @@ import {
 } from 'src/app/header/models/transaction.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Loader } from '../loader/loader.action';
+import { Modal } from '../modal/modal.action';
 
 @State<TransactionsStateModel>({
   name: 'transactions',
@@ -25,29 +26,84 @@ import { Loader } from '../loader/loader.action';
 export class TransactionsState {
   constructor(private db: AngularFirestore, private store: Store) {}
 
+  generateUniqSerial(): string {
+    console.log('generateUniqSerial and showModal in utils.js');
+    return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, (c) => {
+      const r = Math.floor(Math.random() * 16);
+      return r.toString(16);
+    });
+  }
+
+  showModal(message: string) {
+    this.store.dispatch(
+      new Modal.Show({
+        message,
+      })
+    );
+  }
+
   @Action(Transactions.Add)
   addTransaction(
     ctx: StateContext<TransactionsStateModel>,
     data: { payload: TransactionModel }
   ) {
     this.store.dispatch(new Loader.Show());
+    this.db
+      .collection('transactions')
+      .add({ ...data.payload, id: this.generateUniqSerial() })
+      .catch(() =>
+        this.showModal('There was an error with adding the transaction')
+      )
+      .finally(() => {
+        this.store.dispatch(new Loader.Hide());
+      });
+  }
+
+  @Action(Transactions.Delete)
+  deleteTransaction(
+    ctx: StateContext<TransactionsStateModel>,
+    data: { payload: TransactionModel }
+  ) {
+    this.store.dispatch(new Loader.Show());
+    let subscription = this.db
+      .collection('transactions', (ref) =>
+        ref.where('id', '==', data.payload.id)
+      )
+      .get()
+      .subscribe((rows) => {
+        rows.forEach((entry) => {
+          entry.ref
+            .delete()
+            .catch(() => this.showModal('Could not delete the entry'));
+        });
+        this.store.dispatch(new Loader.Hide());
+        this.store.dispatch(new Transactions.Fetch());
+        subscription.unsubscribe();
+      });
+  }
+
+  @Action(Transactions.Fetch)
+  fetchTransactions(ctx: StateContext<TransactionsStateModel>) {
+    this.store.dispatch(new Loader.Show());
+    console.log('remove "any" types');
     const state = ctx.getState();
-    let promise = new Promise<any>((resolve) => {
-      resolve(this.db.collection('transactions').add(data.payload));
-    });
-    promise
-      .then(() => {
-        const groupedTransactions = this.addTransactionToGrouped(
-          data.payload,
-          state.transactionsGrouped
-        );
+    let transactions;
+    let subscription = this.db
+      .collection('transactions')
+      .valueChanges()
+      .subscribe((data: any) => {
+        transactions = data;
+        let groupedTransactions = this.groupTransactions(transactions);
+        groupedTransactions =
+          this.calculateTransactionsSummary(groupedTransactions);
         ctx.setState({
           ...state,
-          transactionsRaw: [...state.transactionsRaw, data.payload],
+          transactionsRaw: transactions,
           transactionsGrouped: groupedTransactions,
         });
-      })
-      .finally(() => this.store.dispatch(new Loader.Hide()));
+        this.store.dispatch(new Loader.Hide());
+        subscription.unsubscribe();
+      });
   }
 
   sortFunc = (a: TransactionModel, b: TransactionModel) => {
@@ -64,60 +120,6 @@ export class TransactionsState {
     let _b = typeof b === 'string' ? parseFloat(b) : b;
     return parseFloat((_a + _b).toFixed(2));
   };
-
-  addTransactionToGrouped(
-    transaction: TransactionModel,
-    groupedTransactions: GroupedTransactionsModel
-  ) {
-    const parsedTransDate = new Date(transaction.date);
-    let id = parsedTransDate.getMonth() + '/' + parsedTransDate.getFullYear();
-    if (!groupedTransactions.transactions[id]) {
-      groupedTransactions.dateOrder.push(id);
-      groupedTransactions.transactions[id] = {
-        transactions: [transaction],
-        month: parsedTransDate.getMonth(),
-        year: parsedTransDate.getFullYear(),
-        totalIncome: transaction.isIncome ? transaction.amount : 0,
-        totalOutcome: !transaction.isIncome ? transaction.amount : 0,
-        summary: {
-          [transaction.category as any]: transaction.isIncome
-            ? transaction.amount
-            : -1 * transaction.amount,
-        },
-      };
-    } else {
-      if (
-        !groupedTransactions.transactions[id].summary[
-          transaction.category as any
-        ]
-      ) {
-        groupedTransactions.transactions[id].summary[
-          transaction.category as any
-        ] = 0;
-      }
-      groupedTransactions.transactions[id].summary[
-        transaction.category as any
-      ] = this.safeAdd(
-        groupedTransactions.transactions[id].summary[
-          transaction.category as any
-        ],
-        transaction.amount * (transaction.isIncome ? 1 : -1)
-      );
-
-      if (transaction.isIncome)
-        groupedTransactions.transactions[id].totalIncome = this.safeAdd(
-          groupedTransactions.transactions[id].totalIncome,
-          transaction.amount
-        );
-      else
-        groupedTransactions.transactions[id].totalOutcome = this.safeAdd(
-          groupedTransactions.transactions[id].totalOutcome,
-          transaction.amount
-        );
-      groupedTransactions.transactions[id].transactions.push(transaction);
-    }
-    return groupedTransactions;
-  }
 
   groupTransactions(transactions: TransactionModel[]) {
     let _transactions = transactions.sort((a, b) => this.sortFunc(a, b));
@@ -174,8 +176,6 @@ export class TransactionsState {
   }
 
   calculateTransactionsSummary(groupedTransactions: any) {
-    console.log('---');
-    console.log(groupedTransactions);
     const keys = Object.keys(groupedTransactions.transactions);
     keys.forEach((key: any) => {
       groupedTransactions.transactions[key].summary = {};
@@ -201,29 +201,5 @@ export class TransactionsState {
       );
     });
     return groupedTransactions;
-  }
-
-  @Action(Transactions.Fetch)
-  fetchTransactions(ctx: StateContext<TransactionsStateModel>) {
-    this.store.dispatch(new Loader.Show());
-    console.log('remove "any" types');
-    const state = ctx.getState();
-    let transactions;
-    let subscription = this.db
-      .collection('transactions')
-      .valueChanges()
-      .subscribe((data: any) => {
-        transactions = data;
-        let groupedTransactions = this.groupTransactions(transactions);
-        groupedTransactions =
-          this.calculateTransactionsSummary(groupedTransactions);
-        ctx.setState({
-          ...state,
-          transactionsRaw: transactions,
-          transactionsGrouped: groupedTransactions,
-        });
-        this.store.dispatch(new Loader.Hide());
-        subscription.unsubscribe();
-      });
   }
 }
