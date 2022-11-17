@@ -1,6 +1,9 @@
-.category {
-    font-size: 16px;
-    line-height: 24px;
-    display: block;
-    cursor: pointer;
+.categories-flex {
+  display: grid;
+  grid-template-columns: 150px 150px 150px;
+  grid-gap: 16px 24px;
+  width: 100%;
+  justify-content: center;
+  max-width: 678px;
+  margin: auto;
 }

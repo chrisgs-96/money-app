@@ -28,6 +28,7 @@ import { LoaderState } from './state/loader/loader.state';
 import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalState } from './state/modal/modal.state';
+import { CategoryBubbleComponent } from './categories-management/category-bubble/category-bubble.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ModalState } from './state/modal/modal.state';
     CategoriesManagementComponent,
     LoaderComponent,
     ModalComponent,
+    CategoryBubbleComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,40 @@
+.option {
+  width: 150px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition-duration: 0.15s;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  & .text {
+    padding: 12px 4px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: white;
+  }
+
+  & .color {
+    height: 125px;
+    background-color: red;
+    border-radius: 4px;
+
+    & svg {
+      width: 100%;
+      height: 100%;
+      padding: 33px;
+      box-sizing: border-box;
+      opacity: 0;
+      cursor: pointer;
+      transition-duration: 0.15s;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

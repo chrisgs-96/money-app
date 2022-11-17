@@ -1,11 +1,9 @@
-<div *ngIf="categories$ | async as categories">
-  <div
-    (click)="deleteCategory(category)"
-    class="category"
+<div *ngIf="categories$ | async as categories" class="categories-flex">
+  <app-category-bubble
     *ngFor="let category of categories"
-  >
-    {{ category.name }}
-  </div>
+    [category]="category"
+    (cliked)="deleteCategory($event)"
+  ></app-category-bubble>
 </div>
 <div>
   <input [(ngModel)]="categoryName" type="text" />
