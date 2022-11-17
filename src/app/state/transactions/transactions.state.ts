@@ -2,15 +2,10 @@ import { State, Action, StateContext, Select, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { Transactions } from './transactions.action';
 import { pipe } from 'rxjs';
-import {
-  GroupedTransactionsModel,
-  TransactionAddPayload,
-  TransactionModel,
-  TransactionsStateModel,
-} from 'src/app/header/models/transaction.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Loader } from '../loader/loader.action';
 import { Modal } from '../modal/modal.action';
+import { GroupedTransactionsModel, TransactionModel, TransactionsStateModel } from 'src/app/models/transaction.model';
 
 @State<TransactionsStateModel>({
   name: 'transactions',

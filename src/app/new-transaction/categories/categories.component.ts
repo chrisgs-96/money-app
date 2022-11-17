@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CategoryModel } from 'src/app/header/models/transaction.model';
+import { CategoryModel } from 'src/app/models/transaction.model';
 
 @Component({
   selector: 'app-categories',

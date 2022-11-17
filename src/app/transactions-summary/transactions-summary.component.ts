@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import {
-  GroupedTransactionsModel,
-  TransactionModel,
-} from '../header/models/transaction.model';
+import { GroupedTransactionsModel } from '../models/transaction.model';
 import { Categories } from '../state/categories/categories.action';
 import { Transactions } from '../state/transactions/transactions.action';
 

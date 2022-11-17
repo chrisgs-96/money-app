@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { CategoryModel } from '../header/models/transaction.model';
+import { CategoryModel } from '../models/transaction.model';
 import { Categories } from '../state/categories/categories.action';
 import { Modal } from '../state/modal/modal.action';
 

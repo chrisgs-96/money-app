@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TransactionsContainer } from '../../header/models/transaction.model'
+import { TransactionsContainer } from 'src/app/models/transaction.model';
 
 @Component({
   selector: 'app-transactions-group',

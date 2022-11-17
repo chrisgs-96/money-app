@@ -1,15 +1,10 @@
 import { State, Action, StateContext, Select } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { pipe } from 'rxjs';
-import {
-  CategoriesStateModel,
-  CategoryModel,
-  LoaderStateModel,
-  ModalStateModel,
-} from 'src/app/header/models/transaction.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Modal } from './modal.action';
 import { state } from '@angular/animations';
+import { ModalStateModel } from 'src/app/models/transaction.model';
 
 @State<ModalStateModel>({
   name: 'modal',

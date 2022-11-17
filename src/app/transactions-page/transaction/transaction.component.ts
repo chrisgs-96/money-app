@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { TransactionModel } from 'src/app/header/models/transaction.model';
+import { TransactionModel } from 'src/app/models/transaction.model';
 import { Transactions } from 'src/app/state/transactions/transactions.action';
 
 @Component({

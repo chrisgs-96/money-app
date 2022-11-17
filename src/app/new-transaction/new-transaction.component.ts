@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Transactions } from '../state/transactions/transactions.action';
 import { Observable } from 'rxjs';
-import { CategoryModel } from '../header/models/transaction.model';
 import { Categories } from '../state/categories/categories.action';
+import { CategoryModel } from '../models/transaction.model';
 
 @Component({
   selector: 'app-new-transaction',

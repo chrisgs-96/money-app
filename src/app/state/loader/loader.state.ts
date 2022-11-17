@@ -1,14 +1,10 @@
 import { State, Action, StateContext, Select } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { pipe } from 'rxjs';
-import {
-  CategoriesStateModel,
-  CategoryModel,
-  LoaderStateModel,
-} from 'src/app/header/models/transaction.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Loader } from './loader.action';
 import { state } from '@angular/animations';
+import { LoaderStateModel } from 'src/app/models/transaction.model';
 
 @State<LoaderStateModel>({
   name: 'loader',

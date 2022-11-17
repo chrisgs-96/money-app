@@ -1,4 +1,3 @@
-import { CategoryModel } from 'src/app/header/models/transaction.model';
 
 export namespace Loader {
 

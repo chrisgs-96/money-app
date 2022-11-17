@@ -1,7 +1,4 @@
-import {
-  TransactionAddPayload,
-  TransactionModel,
-} from 'src/app/header/models/transaction.model';
+import { TransactionModel } from "src/app/models/transaction.model";
 
 export namespace Transactions {
   export interface Action {}
