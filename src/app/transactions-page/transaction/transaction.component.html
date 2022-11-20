@@ -1,12 +1,21 @@
 <div class="container">
-  <div class="date">{{ transaction.date | date: "dd/MM/yyyy" }}</div>
-  <div>{{ transaction.name }}</div>
-  <div class="category">{{ transaction.category }}</div>
+  <div class="date">
+    <span class="hidden-header">Date: </span
+    >{{ transaction.date | date: "dd/MM/yyyy" }}
+  </div>
+  <div><span class="hidden-header">Name: </span>{{ transaction.name }}</div>
+  <div class="category">
+    <span class="hidden-header">Category: </span>{{ transaction.category }}
+  </div>
   <div
     class="amount"
     [ngClass]="{ income: transaction.isIncome, outcome: !transaction.isIncome }"
   >
-    {{ transaction.amount | currency: "EUR":"symbol":"1.2-2" }}
+    <span class="hidden-header">Amount </span
+    >{{ transaction.amount | currency: "EUR":"symbol":"1.2-2" }}
   </div>
-  <div (click)="deleteTransaction()" class="delete"></div>
+  <div (click)="deleteTransaction()" class="delete hide"></div>
+  <div class="delete-transaction-text" (click)="deleteTransaction()">
+    Delete Transaction
+  </div>
 </div>

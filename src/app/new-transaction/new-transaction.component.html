@@ -1,59 +1,67 @@
-<form [formGroup]="newTransactionForm" (ngSubmit)="onSubmit()">
-  <div class="input-container-styled">
-    <label class="styled" for="name">Name:</label>
-    <input class="styled" type="text" formControlName="name" name="name" />
-    <span
-      *ngIf="
-        newTransactionForm.controls.name.touched &&
-        newTransactionForm.controls.name.errors
-      "
-      class="styled-error-text"
+<div class="page-container">
+  <form [formGroup]="newTransactionForm" (ngSubmit)="onSubmit()">
+    <span class="page-title">Add a new Transaction</span>
+    <div class="input-container-styled">
+      <label class="styled" for="name">Name:</label>
+      <input class="styled" type="text" formControlName="name" name="name" />
+      <span
+        *ngIf="
+          newTransactionForm.controls.name.touched &&
+          newTransactionForm.controls.name.errors
+        "
+        class="styled-error-text"
+      >
+        This field should not be empty
+      </span>
+    </div>
+    <div class="input-container-styled">
+      <label class="styled" for="amount">Amount:</label>
+      <input
+        min="0"
+        class="styled"
+        type="text"
+        type="number"
+        formControlName="amount"
+        name="amount"
+      />
+      <span
+        *ngIf="
+          newTransactionForm.controls.amount.touched &&
+          newTransactionForm.controls.amount.errors
+        "
+        class="styled-error-text"
+      >
+        Please enter a positive number</span
+      >
+    </div>
+    <div class="input-container-styled">
+      <label class="styled" for="isIncome">Income/Outcome:</label>
+      <app-is-income-buttons
+        [form]="newTransactionForm"
+      ></app-is-income-buttons>
+    </div>
+    <div
+      class="input-container-styled"
+      *ngIf="categories$ | async as categories"
     >
-      This field should not be empty
-    </span>
-  </div>
-  <div class="input-container-styled">
-    <label class="styled" for="amount">Amount:</label>
-    <input
-      min="0"
-      class="styled"
-      type="text"
-      type="number"
-      formControlName="amount"
-      name="amount"
-    />
-    <span
-      *ngIf="
-        newTransactionForm.controls.amount.touched &&
-        newTransactionForm.controls.amount.errors
-      "
-      class="styled-error-text"
-    >
-      Please enter a positive number</span
-    >
-  </div>
-  <div class="input-container-styled">
-    <label class="styled" for="isIncome">Income/Outcome:</label>
-    <app-is-income-buttons [form]="newTransactionForm"></app-is-income-buttons>
-  </div>
-  <div class="input-container-styled" *ngIf="categories$ | async as categories">
-    <label class="styled" for="isIncome">Category:</label>
-    <app-categories
-      [categories]="categories"
-      [form]="newTransactionForm"
-    ></app-categories>
-  </div>
-  <div class="input-container-styled">
-    <label class="styled" for="date">Date:</label>
-    <input class="styled" type="date" formControlName="date" name="date" />
-    <span
-      *ngIf="
-        newTransactionForm.controls.date.touched &&
-        newTransactionForm.controls.date.errors
-      "
-      class="styled-error-text"
-      >Invalid Date</span
-    >
-  </div>
-  <button class="mt-24">submit</button>
-</form>
+      <label class="styled" for="isIncome">Category:</label>
+      <app-categories
+        [categories]="categories"
+        [form]="newTransactionForm"
+      ></app-categories>
+    </div>
+    <div class="input-container-styled">
+      <label class="styled" for="date">Date:</label>
+      <input class="styled" type="date" formControlName="date" name="date" />
+      <span
+        *ngIf="
+          newTransactionForm.controls.date.touched &&
+          newTransactionForm.controls.date.errors
+        "
+        class="styled-error-text"
+        >Invalid Date</span
+      >
+    </div>
+    <button class="mt-24">submit</button>
+  </form>
+</div>

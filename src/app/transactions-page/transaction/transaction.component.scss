@@ -1,45 +1,84 @@
 .container {
-    display: grid;
-    grid-template-columns: 75px  calc(100% - 403px) 100px 108px 24px;
-    gap: 8px 24px;
-    align-items: center;
-    font-size: 18px;
-    line-height: 24px;
-    margin-top: 4px;
+  display: grid;
+  grid-template-columns: 14% calc(58% - 120px) 13% 15% 24px;
+  gap: 8px 24px;
+  align-items: center;
+  font-size: 18px;
+  line-height: 24px;
+  margin-top: 4px;
 
-    & .date {
-        text-align: left;
-        opacity: 0.8;
-    }
+  & .date {
+    text-align: left;
+    opacity: 0.8;
+  }
 
-    & .category {
-        opacity: 0.6;
-    }
+  & .category {
+    opacity: 0.6;
+  }
 
-    & .amount {
-        font-size: 20px;
-        line-height: 29px;
-        font-weight: bold;
-    }
+  & .amount {
+    font-size: 20px;
+    line-height: 29px;
+    font-weight: bold;
+  }
 
-    & .delete {
-        cursor: pointer;
-        width: 24px;
-        height: 24px;
-        background-image: url(./img/delete.svg);
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        &:hover {
-            opacity: 0.6;
-        }
+  & .delete {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background-image: url(./img/delete.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    &:hover {
+      opacity: 0.6;
     }
+  }
+}
+
+.hidden-header {
+  display: none;
 }
 
 .income {
-    color: green;
+  color: green;
 }
 
 .outcome {
-    color: red;
+  color: red;
+}
+
+.delete-transaction-text {
+  display: none;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: bold;
+  opacity: 0.6;
+}
+
+@media only screen and (max-width: 780px) {
+  .hidden-header {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 4px;
+  }
+
+  .container {
+    grid-template-columns: 100%;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #0c6aa9;
+    padding-bottom: 16px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .delete-transaction-text {
+    display: inline-block;
+  }
+
+  .category {
+    opacity: 1!important;
+  }
 }

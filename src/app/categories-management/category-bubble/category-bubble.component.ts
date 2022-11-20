@@ -34,7 +34,7 @@ export class CategoryBubbleComponent implements OnInit {
     const r = this.getRandomArbitrary();
     const g = this.getRandomArbitrary();
     const b = this.getRandomArbitrary();
-    this.color = `rgb(${r / 2},${g / 2},${this.max([r, g, b])})`;
+    this.color = `rgb(${r / 2.5},${g / 2.5},${this.max([r, g, b])})`;
     this.antiColor = `rgb(${255 - r},${255 - g},${255 - b})`;
   }
 }

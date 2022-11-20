@@ -38,6 +38,6 @@ export class TransactionsPageComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('ngondestroy on components to unsubscribe');
-    if (!this.transactions.length) this.fetchTransactions();
+    this.fetchTransactions();
   }
 }

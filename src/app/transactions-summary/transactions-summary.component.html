@@ -1,9 +1,14 @@
-<div class="container" *ngFor="let date of transactionsGrouped.dateOrder">
-  <span class="date">{{ parseDate(date) }}</span>
-  <div *ngFor="let category of categories">
-    <span
-      >{{ category.name }}:
-      {{(transactionsGrouped?.transactions?.[date]?.summary?.[category.name] || 0) | currency: "EUR":"symbol":"1.2-2" }}</span
-    >
+<div
+  class="page-container mt-24"
+  *ngFor="let date of transactionsGrouped.dateOrder"
+>
+  <span class="page-title special">{{ parseDate(date) }}</span>
+  <div class="grid">
+    <div *ngFor="let category of categories">
+      <span class="bold">{{ category.name }}: </span>
+      <span>
+        {{(transactionsGrouped?.transactions?.[date]?.summary?.[category.name] || 0) | currency: "EUR":"symbol":"1.2-2" }}</span
+      >
+    </div>
   </div>
 </div>

@@ -1,19 +1,32 @@
-<div class="page">
-<div>
-  <span class="title">Add new category</span>
-  <div class="input-container-styled new-category">
-    <div class="button-and-input-flex">
-      <input placeholder="New Category Name" class="styled" name="aaa" [(ngModel)]="categoryName" type="text" />
-      <button class="mt-16" (click)="addCategory()">Add</button>
+<div class="page-container">
+  <div class="page">
+    <div>
+      <span class="page-title">Add new category</span>
+      <div class="input-container-styled new-category">
+        <div class="button-and-input-flex">
+          <input
+            placeholder="New Category Name"
+            class="styled"
+            name="aaa"
+            [(ngModel)]="categoryName"
+            type="text"
+          />
+          <button class="mt-16" (click)="addCategory()">Add</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<span class="title">Existing Categories</span>
-<div *ngIf="categories$ | async as categories" class="categories-flex">
-  <app-category-bubble
-    *ngFor="let category of categories"
-    [category]="category"
-    (cliked)="deleteCategory($event)"
-  ></app-category-bubble>
-</div>
+
+<div class="page-container mt-24">
+  <div class="page">
+    <span class="page-title">Existing Categories</span>
+    <div *ngIf="categories$ | async as categories" class="categories-flex">
+      <app-category-bubble
+        *ngFor="let category of categories"
+        [category]="category"
+        (cliked)="deleteCategory($event)"
+      ></app-category-bubble>
+    </div>
+  </div>
 </div>

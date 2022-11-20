@@ -1,27 +1,19 @@
-<div class="transactions-group">
-  <div class="header">
-    <span class="min-width"
-      >{{ returnMonthName(transactions.month) }} {{ transactions.year }}</span
-    >
-    <div class="income v-flex">
-      <span class="title">Income:</span>
+<div class="page-container extended">
+  <div class="transactions-group">
+    <div class="page-title special">
       <span
-        >{{
-          transactions.totalIncome | currency: "EUR":"symbol":"1.2-2"
-        }}</span
+        >{{ returnMonthName(transactions.month) }} {{ transactions.year }} </span
       >
+      <span class="green ml-16">+ {{
+        transactions.totalIncome | currency: "EUR":"symbol":"1.2-2"
+      }}</span>
+      <span class="red ml-16">- {{
+        transactions.totalOutcome | currency: "EUR":"symbol":"1.2-2"
+      }}</span>
     </div>
-    <div class="outcome v-flex">
-      <span class="title">Outcome:</span>
-      <span
-        >{{
-          transactions.totalOutcome | currency: "EUR":"symbol":"1.2-2"
-        }}</span
-      >
-    </div>
+    <app-transaction
+      *ngFor="let trans of transactions.transactions"
+      [transaction]="trans"
+    ></app-transaction>
   </div>
-  <app-transaction
-    *ngFor="let trans of transactions.transactions"
-    [transaction]="trans"
-  ></app-transaction>
 </div>

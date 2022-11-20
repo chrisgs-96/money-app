@@ -1,9 +1,12 @@
 .navbar {
-  padding: 16px 48px;
+  padding: 0px 48px;
   margin-bottom: 48px;
+  width: 100%;
   display: flex;
   gap: 8px;
   align-items: center;
+  background-color: white;
+  box-sizing: border-box;
 
   &_title {
     font-size: 26px;
@@ -19,16 +22,37 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 150px;
-    gap: 48px;
+    margin-right: 158px;
 
     & span {
       font-size: 18px;
+      padding: 18px 24px;
       cursor: pointer;
 
+      &:hover,
+      &.active {
+        background-color: #0c6aa9;
+        color: white;
+      }
+
       &:hover {
-        text-decoration: underline;
+        opacity: 0.8;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 822px) {
+  span.navbar_title {
+    display: none;
+  }
+  div.navbar {
+    padding: 0 !important;
+    & span {
+      padding: 8px 16px !important;
+    }
+  }
+  div.navigation_menu {
+    margin-right: 0px !important;
   }
 }

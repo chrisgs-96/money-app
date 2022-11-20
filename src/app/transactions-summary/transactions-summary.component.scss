@@ -1,11 +1,23 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 16px;
+.mt-24 {
+  margin-top: 24px;
 }
 
-.date {
-  font-size: 20px;
-  line-height: 29px;
+.grid {
+  display: grid;
+  grid-template-columns: calc(50% - 8px) calc(50% - 8px);
+  width: 100%;
+  margin: auto;
+  font-size: 18px;
+  line-height: 24px;
+  grid-gap: 4px 16px;
+}
+
+.page-title.special {
+  margin-bottom: 8px;
+}
+
+@media only screen and (max-width: 420px) {
+  div.grid {
+    grid-template-columns: 100%;
+  }
 }
