@@ -5,6 +5,7 @@ import { Transactions } from '../state/transactions/transactions.action';
 import { Observable } from 'rxjs';
 import { Categories } from '../state/categories/categories.action';
 import { CategoryModel } from '../models/transaction.model';
+import { Loader } from '../state/loader/loader.action';
 
 @Component({
   selector: 'app-new-transaction',
@@ -14,7 +15,7 @@ import { CategoryModel } from '../models/transaction.model';
 export class NewTransactionComponent implements OnInit {
   @Select((state: any) => state.categories.categories)
   categories$: Observable<CategoryModel[]>;
-  newTransactionForm: FormGroup;
+  newTransactionForm: any;
 
   convertDateToString(date: Date): string {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
@@ -23,13 +24,17 @@ export class NewTransactionComponent implements OnInit {
   constructor(private store: Store) {
     this.newTransactionForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      amount: new FormControl(null, [Validators.required]),
-      category: new FormControl('Other',[Validators.required]),
+      amount: new FormControl(0, [Validators.required]),
+      category: new FormControl('Other', [Validators.required]),
       isIncome: new FormControl(false),
       date: new FormControl(this.convertDateToString(new Date()), [
         Validators.required,
       ]),
     });
+  }
+
+  aa() {
+    this.store.dispatch(new Loader.Show());
   }
 
   ngOnInit(): void {
@@ -39,6 +44,6 @@ export class NewTransactionComponent implements OnInit {
   onSubmit() {
     if (this.newTransactionForm.status === 'VALID')
       this.store.dispatch(new Transactions.Add(this.newTransactionForm.value));
-    else alert('Please fill your form correctly');
+    else this.newTransactionForm.markAllAsTouched();
   }
 }

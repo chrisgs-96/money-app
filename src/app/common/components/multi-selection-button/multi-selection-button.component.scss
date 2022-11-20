@@ -2,9 +2,9 @@
     width: 100%;
     padding: 4px 16px;
     background-color: white;
-    border: 1px solid #4a8f78;
+    border: 1px solid #107dac;
     box-sizing: border-box;
-    color: #4a8f78;
+    color: #107dac;
     text-align: center;
     font-size: 16px;
     line-height: 24px;
@@ -12,15 +12,18 @@
     cursor: pointer;
     min-width: 150px;
     border-radius: 8px;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .btn:hover:not(.selected) {
-    background-color: #4a8f78;
+    background-color: #107dac;
     color: white;
-    opacity: 0.4;
+    opacity: 0.8;
   }
 
   .btn.selected {
-    background-color: #4a8f78;
+    background-color: #107dac;
     color: white;
   }

@@ -3,34 +3,8 @@ form {
     flex-direction: column;
     gap: 16px;
     width: 100%;
-    max-width: 678px;
+    max-width: 498px;
     margin: auto;
     box-sizing: border-box;
     margin-top: 16px;
-
-    & input {
-        border-radius: 4px;
-        outline: none;
-        padding: 8px 16px;
-        background-color: rgba(74, 143, 120, .05);
-        border: 1px solid rgba(74, 143, 120, .15);
-        box-shadow: 2px 2px 5px rgb(0 0 0 / 5%);
-
-        &:hover {
-            box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
-            transition-duration: 0.15s;
-        }
-    }
-
-    &>div {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-
-        & label {
-            font-size: 14px;
-            color: rgba(74, 143, 120, .75);
-            font-weight: bold;
-        }
-    }
 }

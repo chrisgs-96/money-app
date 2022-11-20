@@ -22,11 +22,19 @@ export class CategoryBubbleComponent implements OnInit {
     this.cliked.next(this.category);
   }
 
+  max(nums: number[]) {
+    let min = -1;
+    nums.forEach((num) => {
+      if (num > min) min = num;
+    });
+    return min;
+  }
+
   ngOnInit(): void {
     const r = this.getRandomArbitrary();
     const g = this.getRandomArbitrary();
     const b = this.getRandomArbitrary();
-    this.color = `rgb(${r},${g},${b})`;
+    this.color = `rgb(${r / 2},${g / 2},${this.max([r, g, b])})`;
     this.antiColor = `rgb(${255 - r},${255 - g},${255 - b})`;
   }
 }

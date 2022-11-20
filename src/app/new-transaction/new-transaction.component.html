@@ -1,23 +1,59 @@
 <form [formGroup]="newTransactionForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" formControlName="name" name="name" />
+  <div class="input-container-styled">
+    <label class="styled" for="name">Name:</label>
+    <input class="styled" type="text" formControlName="name" name="name" />
+    <span
+      *ngIf="
+        newTransactionForm.controls.name.touched &&
+        newTransactionForm.controls.name.errors
+      "
+      class="styled-error-text"
+    >
+      This field should not be empty
+    </span>
   </div>
-  <div>
-    <label for="amount">Amount:</label>
-    <input type="text" type="number" formControlName="amount" name="amount" />
+  <div class="input-container-styled">
+    <label class="styled" for="amount">Amount:</label>
+    <input
+      min="0"
+      class="styled"
+      type="text"
+      type="number"
+      formControlName="amount"
+      name="amount"
+    />
+    <span
+      *ngIf="
+        newTransactionForm.controls.amount.touched &&
+        newTransactionForm.controls.amount.errors
+      "
+      class="styled-error-text"
+    >
+      Please enter a positive number</span
+    >
   </div>
-  <div>
-    <label for="isIncome">Income/Outcome:</label>
+  <div class="input-container-styled">
+    <label class="styled" for="isIncome">Income/Outcome:</label>
     <app-is-income-buttons [form]="newTransactionForm"></app-is-income-buttons>
   </div>
-  <div *ngIf="categories$ | async as categories">
-    <label for="isIncome">Category:</label>
-    <app-categories [categories]="categories" [form]="newTransactionForm"></app-categories>
+  <div class="input-container-styled" *ngIf="categories$ | async as categories">
+    <label class="styled" for="isIncome">Category:</label>
+    <app-categories
+      [categories]="categories"
+      [form]="newTransactionForm"
+    ></app-categories>
   </div>
-  <div>
-    <label for="date">Date:</label>
-    <input type="date" formControlName="date" name="date" />
+  <div class="input-container-styled">
+    <label class="styled" for="date">Date:</label>
+    <input class="styled" type="date" formControlName="date" name="date" />
+    <span
+      *ngIf="
+        newTransactionForm.controls.date.touched &&
+        newTransactionForm.controls.date.errors
+      "
+      class="styled-error-text"
+      >Invalid Date</span
+    >
   </div>
-  <button>submit</button>
+  <button class="mt-24">submit</button>
 </form>
