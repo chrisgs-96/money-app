@@ -19,7 +19,12 @@ export class CategoriesManagementComponent implements OnInit {
   constructor(private store: Store) {}
 
   addCategory() {
-    this.store.dispatch(new Categories.Add({ name: this.categoryName }));
+    if (this.categoryName)
+      this.store.dispatch(new Categories.Add({ name: this.categoryName }));
+    else
+      this.store.dispatch(
+        new Modal.Show({ message: 'Please fill in the name input field' })
+      );
   }
 
   deleteCategory(category: CategoryModel) {

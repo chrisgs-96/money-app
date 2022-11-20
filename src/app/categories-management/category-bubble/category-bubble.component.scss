@@ -1,12 +1,13 @@
 .option {
   width: 150px;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   transition-duration: 0.15s;
   border-radius: 4px;
   cursor: pointer;
+  
   &:hover {
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.25);
   }
 
   & .text {
@@ -17,6 +18,8 @@
     font-size: 14px;
     border-radius: 4px;
     background-color: white;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   & .color {

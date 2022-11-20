@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+input.styled {
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid rgb(199, 199, 199);
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 19px;
+  outline: none;
+  width: 100%;
+  &:focus,
+  &:hover {
+    border: 1px solid rgb(155, 155, 155);
+  }
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(155, 155, 155) red;
+    opacity: 0.8; /* Firefox */
+  }
+}
+
+div.input-container-styled {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 2px;
+}
+
+label.styled {
+  font-size: 14px;
+  color: black;
+  line-height: 19px;
+}
+
+button {
+  border: 1px solid #189ad3;
+  border-radius: 4px;
+  background-color: #107dac;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 150px;
+  margin: auto;
+  display: block;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+html {
+  background-image: url(./app//common/assets/background.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.button-and-input-flex {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  gap: 4px;
+  & button {
+    margin: 0;
+  }
+}
+
+.title {
+  font-size: 20px;
+  line-height: 29px;
+  color: black;
+  display: block;
+  margin-bottom: 8px;
+}
