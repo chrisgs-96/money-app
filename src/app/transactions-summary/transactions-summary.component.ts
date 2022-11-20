@@ -30,6 +30,13 @@ export class TransactionsSummaryComponent implements OnInit {
     });
   }
 
+  parseDate(date: string) {
+    const splitDate = date.split('/');
+    const month = splitDate[0];
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    return `${months[parseInt(month)]} ${splitDate[1]}`;
+  }
+
   ngOnInit(): void {
     this.store.dispatch(new Transactions.Fetch());
     this.store.dispatch(new Categories.Fetch());

@@ -1,72 +1,45 @@
-.transaction-row {
-    & {
-        display: flex;
-        gap: 16px;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 678px;
-        box-sizing: border-box;
-        padding: 16px 32px;
-        border-radius: 8px;
-        transition-duration: 0.15s;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, .1);
-        margin: auto;
-        margin-top: 8px;
-        color: #161616;
-        background-color: rgba(200,200,200,.05);
-    }
+.container {
+    display: grid;
+    grid-template-columns: 75px  calc(100% - 403px) 100px 108px 24px;
+    gap: 8px 24px;
+    align-items: center;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 4px;
 
-    &:hover {
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, .1);
-    }
-    
-    & .vflex {
-        display: flex;
-        flex-direction: column;
+    & .date {
+        text-align: left;
+        opacity: 0.8;
     }
 
     & .category {
-        font-size: 12px;
-        line-height: 16px;
-        opacity: 0.6;
-    }
-
-    &.negative {
-        border-left: 14px solid darkred;
-    }
-
-    &.positive {
-        border-left: 14px solid rgb(74, 143, 120);
-    }
-
-    & .name {
-        font-size: 20px;
-        line-height: 26px
-    }
-    
-    & .date {
-        font-size: 14px;
-        line-height: 19px;
         opacity: 0.6;
     }
 
     & .amount {
         font-size: 20px;
-        line-height: 26px;
+        line-height: 29px;
+        font-weight: bold;
     }
 
-    &.negative .amount {
-        color: red;
+    & .delete {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        background-image: url(./img/delete.svg);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        &:hover {
+            opacity: 0.6;
+        }
     }
+}
 
-    &.positive .amount {
-        color: rgb(74, 143, 120);
-    }
-    
-    & .date-amount-container {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-    }
+.income {
+    color: green;
+}
+
+.outcome {
+    color: red;
 }

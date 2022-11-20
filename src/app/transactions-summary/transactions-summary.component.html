@@ -1,11 +1,9 @@
-<div *ngFor="let date of transactionsGrouped.dateOrder">
-  <span>{{ date }}</span>
-  <br />
+<div class="container" *ngFor="let date of transactionsGrouped.dateOrder">
+  <span class="date">{{ parseDate(date) }}</span>
   <div *ngFor="let category of categories">
     <span
       >{{ category.name }}:
-      {{transactionsGrouped?.transactions?.[date]?.summary?.[category.name] || 0}}</span
+      {{(transactionsGrouped?.transactions?.[date]?.summary?.[category.name] || 0) | currency: "EUR":"symbol":"1.2-2" }}</span
     >
   </div>
-  <hr />
 </div>
