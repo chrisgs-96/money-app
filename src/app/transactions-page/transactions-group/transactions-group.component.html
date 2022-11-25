@@ -12,7 +12,8 @@
       }}</span>
     </div>
     <app-transaction
-      *ngFor="let trans of transactions.transactions"
+      *ngFor="let trans of transactions.transactions;let i = index"
+      [isLast]="i === (transactions.transactions.length - 1)"
       [transaction]="trans"
     ></app-transaction>
   </div>

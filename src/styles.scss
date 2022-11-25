@@ -15,19 +15,19 @@ input.styled {
   }
   &::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(155, 155, 155) red;
+    color: rgb(155, 155, 155) #fd6d6d;
     opacity: 0.8; /* Firefox */
   }
 
   &.ng-invalid.ng-touched {
-    border: 1px solid red;
+    border: 1px solid #fd6d6d;
   }
 }
 
 span.styled-error-text {
   font-size: 12px;
   line-height: 14px;
-  color: red;
+  color: #fd6d6d;
   margin-top: 2px;
 }
 
@@ -47,7 +47,7 @@ label.styled {
 button {
   border: 0;
   border-radius: 4px;
-  background-color: #107dac;
+  background-color: #59a1d1;
   color: white;
   cursor: pointer;
   padding: 8px 16px;
@@ -64,7 +64,7 @@ button {
 }
 
 html {
-  background-color: #0c6aa9;
+  background-color: #59a1d1;
 }
 
 .mt-16 {
@@ -80,11 +80,11 @@ html {
 }
 
 .red {
-  color: red;
+  color: #fd6d6d;
 }
 
 .green {
-  color: green;
+  color: #06cd06;
 }
 
 .button-and-input-flex {
@@ -114,7 +114,7 @@ html {
   &.special {
     width: calc(100% + 48px);
     margin-left: -24px;
-    border-bottom: 2px solid #0c6aa9;
+    border-bottom: 2px solid #59a1d1;
     padding-bottom: 8px;
     margin-bottom: 24px;
   }
@@ -160,6 +160,6 @@ html {
 @media only screen and (max-width: 500px) {
   body .page-title {
     font-size: 16px;
-    line-height: 24px;
+    line-height: 22px;
   }
 }

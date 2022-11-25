@@ -29,7 +29,8 @@ export class CategoriesManagementComponent implements OnInit {
   }
 
   deleteCategory(category: CategoryModel) {
-    this.store.dispatch(new Categories.Remove(category));
+    const confirmation = confirm('Are you sure you want to delete the category "' + category.name + '"?');
+    if (confirmation) this.store.dispatch(new Categories.Remove(category));
   }
 
   ngOnInit(): void {

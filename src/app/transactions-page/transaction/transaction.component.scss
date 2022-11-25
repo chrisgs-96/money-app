@@ -4,11 +4,11 @@
   gap: 8px 16px;
   align-items: center;
   font-size: 14px;
-  line-height: 24px;
+  line-height: 19px;
   margin-top: 4px;
 
   & > div {
-    height: 24px;
+    height: 19px;
   }
 
   span.val {
@@ -34,8 +34,8 @@
 
   & .delete {
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background-image: url(./img/delete.svg);
     background-size: contain;
     background-position: center;
@@ -51,11 +51,11 @@
 }
 
 .income {
-  color: green;
+  color: #06cd06;
 }
 
 .outcome {
-  color: red;
+  color: #fd6d6d;
 }
 
 .delete-transaction-text,
@@ -93,7 +93,11 @@
   .container {
     grid-template-columns: calc(50% - 8px) calc(50% - 8px);
     grid-gap: 0px 4px;
-    border-bottom: 1px solid #0c6aa9;
+    border-bottom: 1px solid #59a1d1;
+
+    &.no-border {
+      border-bottom: 0px;
+    }
 
     & > div {
       height: unset;
@@ -103,7 +107,7 @@
 
 @media only screen and (max-width: 420px) {
   div.container {
-    grid-template-columns: 100%!important;
+    grid-template-columns: 100% !important;
     padding-bottom: 16px;
   }
 }

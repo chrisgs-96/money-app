@@ -2,12 +2,12 @@
     width: 100%;
     padding: 4px 16px;
     background-color: white;
-    border: 1px solid #107dac;
+    border: 1px solid #59a1d1;
     box-sizing: border-box;
-    color: #107dac;
+    color: #59a1d1;
     text-align: center;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 19px;
     transition-duration: 0.1s;
     cursor: pointer;
     min-width: 143px;
@@ -19,13 +19,13 @@
   }
 
   .btn:hover:not(.selected) {
-    background-color: #107dac;
+    background-color: #59a1d1;
     color: white;
     opacity: 0.8;
   }
 
   .btn.selected {
-    background-color: #107dac;
+    background-color: #59a1d1;
     color: white;
   }
 
