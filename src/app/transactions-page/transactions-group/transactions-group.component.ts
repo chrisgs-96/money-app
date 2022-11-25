@@ -13,7 +13,7 @@ export class TransactionsGroupComponent implements OnInit {
 
   returnMonthName(month: number) {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    return months[month];
+    return window.innerWidth >= 350 ? months[month] : months[month].substring(0,3);
   }
 
   ngOnInit(): void {

@@ -24,7 +24,7 @@ export class NewTransactionComponent implements OnInit {
   constructor(private store: Store) {
     this.newTransactionForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
-      amount: new FormControl(0, [Validators.required]),
+      amount: new FormControl(null, [Validators.required]),
       category: new FormControl('Other', [Validators.required]),
       isIncome: new FormControl(false),
       date: new FormControl(this.convertDateToString(new Date()), [

@@ -17,6 +17,10 @@ export class ModalComponent implements OnInit {
   message$: Observable<string>;
   message: string;
 
+  hide1() {
+    console.log('aa')
+  }
+
   constructor(private store: Store) {
     this.isVisible$.subscribe((isVisible) => (this.isVisible = isVisible));
     this.message$.subscribe((message) => (this.message = message));

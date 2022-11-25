@@ -1,6 +1,7 @@
-<div *ngIf="isVisible" (click)="hide()">
-  <span>{{ message }}</span>
-  <span>{{ message }}</span>
-  <span>{{ message }}</span>
-  <span>{{ message }}</span>
+<div class="modal-background" *ngIf="isVisible">
+  <div class="clickable-overlay" (click)="hide()"></div>
+  <div class="modal-box">
+    <span class="text-content">{{ message || 'An error occured' }}</span>
+    <button (click)="hide()">Okay</button>
+  </div>
 </div>

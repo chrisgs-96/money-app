@@ -15,6 +15,7 @@
     display: block;
     white-space: nowrap;
     width: 150px;
+    color: #0c6aa9;
   }
 
   & .navigation_menu {
@@ -25,9 +26,10 @@
     margin-right: 158px;
 
     & span {
-      font-size: 18px;
+      font-size: 16px;
       padding: 18px 24px;
       cursor: pointer;
+      color: #0c6aa9;
 
       &:hover,
       &.active {
@@ -54,5 +56,17 @@
   }
   div.navigation_menu {
     margin-right: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .navigation_menu {
+    justify-content: flex-start !important;
+  }
+
+  div.navigation_menu span {
+    font-size: 14px !important;
+    line-height: 19px !important;
+    padding: 8px !important;
   }
 }

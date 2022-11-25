@@ -6,8 +6,8 @@ import { TransactionsPageComponent } from './transactions-page/transactions-page
 import { TransactionsSummaryComponent } from './transactions-summary/transactions-summary.component';
 
 const routes: Routes = [
-  { path: '', component: TransactionsPageComponent },
-  { path: 'add', component: NewTransactionComponent },
+  { path: '', component: NewTransactionComponent },
+  { path: 'history', component: TransactionsPageComponent },
   { path: 'categories', component: CategoriesManagementComponent},
   { path: 'summary', component: TransactionsSummaryComponent},
   { path: '*', component: TransactionsPageComponent },

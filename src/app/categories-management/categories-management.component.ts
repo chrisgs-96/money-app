@@ -19,9 +19,10 @@ export class CategoriesManagementComponent implements OnInit {
   constructor(private store: Store) {}
 
   addCategory() {
-    if (this.categoryName)
+    if (this.categoryName) {
       this.store.dispatch(new Categories.Add({ name: this.categoryName }));
-    else
+      this.categoryName = '';
+    } else
       this.store.dispatch(
         new Modal.Show({ message: 'Please fill in the name input field' })
       );
@@ -33,6 +34,5 @@ export class CategoriesManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(new Categories.Fetch());
-    console.log('add loader and modal!');
   }
 }
