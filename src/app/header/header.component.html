@@ -3,12 +3,15 @@
   <div class="navigation_menu">
     <span
       [routerLinkActiveOptions]="{ exact: true }"
-      routerLink="/"
+      routerLink="/add"
       routerLinkActive="active"
       >Add</span
     >
     <span routerLink="/history" routerLinkActive="active">Transactions</span>
     <span routerLink="/summary" routerLinkActive="active">Summary</span>
     <span routerLink="/categories" routerLinkActive="active">Categories</span>
+    <span routerLink="/" routerLinkActive="active">Login</span>
+    <span routerLink="/signup" routerLinkActive="active">Sign Up</span>
+    <span (click)="logout()">Logout</span>
   </div>
 </div>

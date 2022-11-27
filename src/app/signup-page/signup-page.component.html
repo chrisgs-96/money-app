@@ -1,0 +1,30 @@
+<p>login-page works!</p>
+<button (click)="authService.GoogleAuth()">login</button>
+<button (click)="authService.SignOut()">logout</button>
+<div class="page-container more-padding-top">
+  <span class="page-title">Sign Up</span>
+  <div class="input-container-styled mt-16">
+    <label for="email">Username</label>
+    <input class="styled" type="email" name="email" [(ngModel)]="email" />
+  </div>
+  <div class="input-container-styled mt-24">
+    <label for="password">Password</label>
+    <input
+      class="styled"
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+    />
+  </div>
+  <div class="input-container-styled mt-24">
+    <label for="passwordVerification">Password Verification</label>
+    <input
+      class="styled"
+      type="password"
+      name="passwordVerification"
+      [(ngModel)]="passwordConfirmation"
+    />
+  </div>
+  <button (click)="signUp()" class="mt-32">Sign Up</button>
+  <button class="mt-8 secondary" (click)="goToSignInPage()">Sign In</button>
+</div>

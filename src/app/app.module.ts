@@ -29,6 +29,10 @@ import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalState } from './state/modal/modal.state';
 import { CategoryBubbleComponent } from './categories-management/category-bubble/category-bubble.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthState } from './state/auth/auth.state';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,8 @@ import { CategoryBubbleComponent } from './categories-management/category-bubble
     LoaderComponent,
     ModalComponent,
     CategoryBubbleComponent,
+    LoginPageComponent,
+    SignupPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +62,7 @@ import { CategoryBubbleComponent } from './categories-management/category-bubble
       CategoriesState,
       LoaderState,
       ModalState,
+      AuthState
     ]),
     ReactiveFormsModule,
     HttpClientModule,
@@ -67,7 +74,7 @@ import { CategoryBubbleComponent } from './categories-management/category-bubble
     AngularFirestoreModule,
     AngularFireStorageModule,
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
