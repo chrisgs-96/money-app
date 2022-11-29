@@ -123,13 +123,15 @@ export class AuthState {
           .GetUserState()
           .pipe(take(1))
           .subscribe((data) => {
-            console.log(data);
             if (data?.email) {
               ctx.setState({
                 email: data.email,
                 isLoggedIn: true,
               });
               this.router.navigate(['add']);
+            } else if (!data) {
+              const message = 'There was an error with Google Authentication.'
+              this.store.dispatch(new Modal.Show({ message }))
             }
           });
       })
