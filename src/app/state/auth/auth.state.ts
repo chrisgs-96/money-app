@@ -123,6 +123,7 @@ export class AuthState {
           .GetUserState()
           .pipe(take(1))
           .subscribe((data) => {
+            console.log(data);
             if (data?.email) {
               ctx.setState({
                 email: data.email,
