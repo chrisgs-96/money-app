@@ -5,6 +5,9 @@
     <span routerLink="/history" routerLinkActive="active">Transactions</span>
     <span routerLink="/summary" routerLinkActive="active">Summary</span>
     <span routerLink="/categories" routerLinkActive="active">Categories</span>
-    <span *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</span>
+  </div>
+  <div class="navbar_accountMenu">
+    <span class="mail" *ngIf="email$ | async as email">{{email}}</span>
+    <span class="logout" *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</span>
   </div>
 </div>

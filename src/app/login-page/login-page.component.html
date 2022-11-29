@@ -13,8 +13,10 @@
       [(ngModel)]="password"
     />
   </div>
-  <button (click)="signIn()" class="mt-32">Sign In</button>
-  <button class="mt-8 secondary" (click)="goToSignUpPage()">Sign Up</button>
+  <div class="buttons-flex">
+    <button (click)="signIn()">Sign In</button>
+    <button class="secondary" (click)="goToSignUpPage()">Sign Up</button>
+  </div>
   <button class="mt-8 google" (click)="googleLogin()">
     <div class="icon"></div>
     Sign in with Google

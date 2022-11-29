@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-columns: 27% calc(58% - 72px) 15% 24px;
+  grid-template-columns: 27% calc(58% - 172px) 15% 124px;
   gap: 8px 16px;
   align-items: center;
   font-size: 14px;
@@ -31,19 +31,6 @@
       width: 100%;
     }
   }
-
-  & .delete {
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-    background-image: url(./img/delete.svg);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    &:hover {
-      opacity: 0.6;
-    }
-  }
 }
 
 .hidden-header {
@@ -51,14 +38,13 @@
 }
 
 .income {
-  color: #06cd06;
+  color: #0796f5;
 }
 
 .outcome {
-  color: #fd6d6d;
+  color: #f8690a;
 }
 
-.delete-transaction-text,
 .grid-placeholder {
   display: none;
 }
@@ -81,7 +67,6 @@
     display: none;
   }
 
-  .delete-transaction-text,
   .grid-placeholder {
     display: inline-block;
   }

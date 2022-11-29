@@ -22,6 +22,8 @@
       [(ngModel)]="passwordConfirmation"
     />
   </div>
-  <button (click)="signUp()" class="mt-32">Sign Up</button>
-  <button class="mt-8 secondary" (click)="goToSignInPage()">Sign In</button>
+  <div class="buttons-flex">
+    <button class="secondary" (click)="goToSignInPage()">Cancel</button>
+    <button (click)="signUp()">Sign Up</button>
+  </div>
 </div>

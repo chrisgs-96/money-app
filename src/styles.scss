@@ -15,19 +15,19 @@ input.styled {
   }
   &::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgb(155, 155, 155) #fd6d6d;
+    color: rgb(155, 155, 155) #f8690a;
     opacity: 0.8; /* Firefox */
   }
 
   &.ng-invalid.ng-touched {
-    border: 1px solid #fd6d6d;
+    border: 1px solid #f8690a;
   }
 }
 
 span.styled-error-text {
   font-size: 12px;
   line-height: 14px;
-  color: #fd6d6d;
+  color: #f8690a;
   margin-top: 2px;
 }
 
@@ -119,11 +119,11 @@ html {
 }
 
 .red {
-  color: #fd6d6d;
+  color: #f8690a;
 }
 
 .green {
-  color: #06cd06;
+  color: #0796f5;
 }
 
 .button-and-input-flex {

@@ -23,7 +23,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 158px;
 
     & span {
       font-size: 16px;
@@ -42,9 +41,33 @@
       }
     }
   }
+
+  &_accountMenu {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    & .mail {
+      font-size: 14px;
+      line-height: 19px;
+      opacity: .4;
+    }
+
+    & .logout {
+      color: #59a1d1;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 19px;
+
+      &:hover {
+        cursor: pointer;
+        opacity: .6;
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 822px) {
+@media only screen and (max-width: 900px) {
   span.navbar_title {
     display: none;
   }
@@ -59,10 +82,17 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 800px) {
   div.navigation_menu span {
     font-size: 14px !important;
     line-height: 19px !important;
     padding: 8px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  div.navbar {
+    flex-direction: column;
+    gap: 0px;
   }
 }

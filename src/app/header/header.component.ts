@@ -13,10 +13,14 @@ export class HeaderComponent implements OnInit {
   constructor(private store: Store) {}
   @Select((state: any) => state.auth.isLoggedIn)
   isLoggedIn$: Observable<Boolean>;
+  @Select((state: any) => state.auth.email)
+  email$: Observable<string>;
 
   logout() {
     this.store.dispatch(new AuthActions.Logout());
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('data types')
+  }
 }

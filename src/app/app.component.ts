@@ -12,5 +12,6 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     console.log('The UUID generator function should be common');
     console.log('Check components and data types');
+    console.log('Fix bug with the Other category type')
   }
 }

@@ -14,9 +14,8 @@
     <span class="hidden-header">Amount </span>
     <span class="val">{{ transaction.amount | currency: "EUR":"symbol":"1.2-2" }}</span>
   </div>
-  <div (click)="deleteTransaction()" class="delete hide"></div>
-  <div class="grid-placeholder"></div>
   <button class="delete-transaction-text" (click)="deleteTransaction()">
     Delete
   </button>
+  <div class="grid-placeholder"></div>
 </div>
