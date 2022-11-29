@@ -6,7 +6,10 @@ import { Categories } from './categories.action';
 import { state } from '@angular/animations';
 import { Loader } from '../loader/loader.action';
 import { Modal } from '../modal/modal.action';
-import { CategoriesStateModel, CategoryModel } from 'src/app/models/transaction.model';
+import {
+  CategoriesStateModel,
+  CategoryModel,
+} from 'src/app/models/transaction.model';
 
 @State<CategoriesStateModel>({
   name: 'categories',
@@ -19,7 +22,6 @@ export class CategoriesState {
   constructor(private db: AngularFirestore, private store: Store) {}
 
   generateUniqSerial(): string {
-    console.log('generateUniqSerial and showModal in utils.js');
     return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, (c) => {
       const r = Math.floor(Math.random() * 16);
       return r.toString(16);
@@ -40,10 +42,12 @@ export class CategoriesState {
     data: { payload: CategoryModel }
   ) {
     this.store.dispatch(new Loader.Show());
-    const state = ctx.getState();
+    const email = this.store.selectSnapshot<string>(
+      (state) => state.auth.email
+    );
     this.db
       .collection('categories')
-      .add({ ...data.payload, id: this.generateUniqSerial() })
+      .add({ ...data.payload, id: this.generateUniqSerial(), email })
       .catch(() =>
         this.showModal(
           'There was an error with adding the category ' + data.payload.name
@@ -84,8 +88,11 @@ export class CategoriesState {
   fetchCategories(ctx: StateContext<CategoriesStateModel>) {
     this.store.dispatch(new Loader.Show());
     const state = ctx.getState();
+    const email = this.store.selectSnapshot<string>(
+      (state) => state.auth.email
+    );
     let subscription = this.db
-      .collection('categories')
+      .collection('categories', (ref) => ref.where('email', '==', email))
       .valueChanges()
       .subscribe((data: any) => {
         ctx.setState({

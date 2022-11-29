@@ -54,12 +54,5 @@ export class SignupPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService
-      .GetUserState()
-      .pipe(take(1))
-      .subscribe((value) => {
-        if (value?.email) console.log(value.email);
-        // this.router.navigate(['/add'])
-      });
   }
 }

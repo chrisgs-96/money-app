@@ -5,7 +5,11 @@ import { pipe } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Loader } from '../loader/loader.action';
 import { Modal } from '../modal/modal.action';
-import { GroupedTransactionsModel, TransactionModel, TransactionsStateModel } from 'src/app/models/transaction.model';
+import {
+  GroupedTransactionsModel,
+  TransactionModel,
+  TransactionsStateModel,
+} from 'src/app/models/transaction.model';
 
 @State<TransactionsStateModel>({
   name: 'transactions',
@@ -43,9 +47,13 @@ export class TransactionsState {
     data: { payload: TransactionModel }
   ) {
     this.store.dispatch(new Loader.Show());
+    const email = this.store.selectSnapshot<string>(
+      (state) => state.auth.email
+    );
     this.db
       .collection('transactions')
-      .add({ ...data.payload, id: this.generateUniqSerial() })
+      .add({ ...data.payload, id: this.generateUniqSerial(), email })
+      .then(()=> this.showModal('Transaction added succesfully'))
       .catch(() =>
         this.showModal('There was an error with adding the transaction')
       )
@@ -83,8 +91,11 @@ export class TransactionsState {
     console.log('remove "any" types');
     const state = ctx.getState();
     let transactions;
+    const email = this.store.selectSnapshot<string>(
+      (state) => state.auth.email
+    );
     let subscription = this.db
-      .collection('transactions')
+      .collection('transactions', (ref) => ref.where('email', '==', email))
       .valueChanges()
       .subscribe((data: any) => {
         transactions = data;

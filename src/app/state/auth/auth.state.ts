@@ -72,7 +72,7 @@ export class AuthState {
           email: data.payload.email,
           isLoggedIn: true,
         });
-        this.router.navigate(['/add']);
+        this.router.navigate(['add']);
       })
       .catch((err) => this.store.dispatch(new Modal.Show({ message: err })))
       .finally(() => this.store.dispatch(new Loader.Hide()));
@@ -108,7 +108,6 @@ export class AuthState {
           isLoggedIn: false,
         });
         this.router.navigate(['/']);
-        this.store.dispatch(new Modal.Show({ message: 'Logged Out!' }));
       })
       .catch((err) => this.store.dispatch(new Modal.Show({ message: err })))
       .finally(() => this.store.dispatch(new Loader.Hide()));
@@ -128,7 +127,7 @@ export class AuthState {
               email: data?.email || '',
               isLoggedIn: true,
             });
-            this.router.navigate(['/']);
+            this.router.navigate(['add']);
           });
       })
       .catch((err) => this.store.dispatch(new Modal.Show({ message: err })))
