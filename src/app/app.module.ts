@@ -33,6 +33,8 @@ import { AuthenticationService } from './services/authentication/authentication.
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthState } from './state/auth/auth.state';
 import { SignupPageComponent } from './signup-page/signup-page.component';
+import { AuthGuard } from './guardians/AuthGuard';
+import { BlockWhenLoggedGuard } from './guardians/BlockWhenLoggedGuard';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
       CategoriesState,
       LoaderState,
       ModalState,
-      AuthState
+      AuthState,
     ]),
     ReactiveFormsModule,
     HttpClientModule,
@@ -74,7 +76,7 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AuthGuard, BlockWhenLoggedGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

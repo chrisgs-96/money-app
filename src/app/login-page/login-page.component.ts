@@ -22,10 +22,12 @@ export class LoginPageComponent implements OnInit {
   password: string = '';
 
   signIn() {
-    if (!this.email || !this.password)
+    if (!this.email || !this.password) {
       this.store.dispatch(
         new Modal.Show({ message: 'Please fill all of the required fields' })
       );
+      return;
+    }
     this.store.dispatch(
       new AuthActions.Login({ email: this.email, password: this.password })
     );
@@ -40,12 +42,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService
-      .GetUserState()
-      .pipe(take(1))
-      .subscribe((value) => {
-        if (value?.email) console.log(value.email);
-        // this.router.navigate(['/add'])
-      });
+    this.store.dispatch(new AuthActions.GetUserStatus());
   }
 }

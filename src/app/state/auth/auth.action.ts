@@ -1,4 +1,4 @@
-import { EmailPayload } from "./auth.model";
+import { EmailPayload } from './auth.model';
 
 export namespace AuthActions {
   export interface Action {}
@@ -25,6 +25,11 @@ export namespace AuthActions {
 
   export class GoogleLogin implements Action {
     static readonly type = '[Auth] GoogleLogin';
+    constructor() {}
+  }
+
+  export class GetUserStatus implements Action {
+    static readonly type = '[Auth] GetUserStatus';
     constructor() {}
   }
 }

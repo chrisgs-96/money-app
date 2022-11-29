@@ -1,4 +1,11 @@
-import { State, Action, StateContext, Select, Store } from '@ngxs/store';
+import {
+  State,
+  Action,
+  StateContext,
+  Select,
+  Store,
+  Selector,
+} from '@ngxs/store';
 import { Injectable, setTestabilityGetter } from '@angular/core';
 import { pipe, take } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -28,6 +35,31 @@ export class AuthState {
     private router: Router
   ) {
     this.authService = authService;
+  }
+
+  @Selector()
+  static isLoggedIn(state: AuthStateModel) {
+    return state.isLoggedIn;
+  }
+
+  @Action(AuthActions.GetUserStatus)
+  getUserStatus(ctx: StateContext<AuthStateModel>) {
+    this.store.dispatch(new Loader.Show());
+    this.authService
+      .GetUserState()
+      .pipe(take(1))
+      .subscribe((userData) => {
+        if (userData?.email) {
+          ctx.setState({
+            email: userData.email,
+            isLoggedIn: true,
+          });
+          this.router.navigate(['add']);
+        } else {
+          this.router.navigate(['']);
+        }
+        this.store.dispatch(new Loader.Hide());
+      });
   }
 
   @Action(AuthActions.Login)

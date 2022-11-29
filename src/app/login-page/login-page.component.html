@@ -1,10 +1,7 @@
-<p>login-page works!</p>
-<button (click)="authService.GoogleAuth()">login</button>
-<button (click)="authService.SignOut()">logout</button>
 <div class="page-container more-padding-top">
   <span class="page-title">Sign In</span>
   <div class="input-container-styled mt-16">
-    <label for="email">Username</label>
+    <label for="email">Email</label>
     <input class="styled" type="email" name="email" [(ngModel)]="email" />
   </div>
   <div class="input-container-styled mt-24">
@@ -18,5 +15,8 @@
   </div>
   <button (click)="signIn()" class="mt-32">Sign In</button>
   <button class="mt-8 secondary" (click)="goToSignUpPage()">Sign Up</button>
-  <button class="mt-8 google" (click)="googleLogin()">Google Login</button>
+  <button class="mt-8 google" (click)="googleLogin()">
+    <div class="icon"></div>
+    Sign in with Google
+  </button>
 </div>

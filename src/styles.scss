@@ -57,6 +57,8 @@ button {
   width: 100%;
   margin: auto;
   display: block;
+  font-size: 12px;
+  line-height: 14px;
 
   &:hover {
     opacity: 0.8;
@@ -70,9 +72,26 @@ button.secondary {
 }
 
 button.google {
-  background: linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335);
-  color: white;
+  background-color: white;
+  color: #757575;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  justify-content: center;
+  border: 1px solid rgb(117 117 117 / 20%);
+  box-shadow: 2px 2px 1px rgb(117 117 117 / 20%);
+
+  & .icon {
+    background-image: url("./app/common/assets/google-logo.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+  }
 }
 
 html {
