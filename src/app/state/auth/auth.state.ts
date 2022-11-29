@@ -119,15 +119,17 @@ export class AuthState {
     this.authService
       .GoogleAuth()
       .then(() => {
-        this.authService
+        this.authService  
           .GetUserState()
           .pipe(take(1))
           .subscribe((data) => {
-            ctx.setState({
-              email: data?.email || '',
-              isLoggedIn: true,
-            });
-            this.router.navigate(['add']);
+            if (data?.email) {
+              ctx.setState({
+                email: data.email,
+                isLoggedIn: true,
+              });
+              this.router.navigate(['add']);
+            }
           });
       })
       .catch((err) => this.store.dispatch(new Modal.Show({ message: err })))
