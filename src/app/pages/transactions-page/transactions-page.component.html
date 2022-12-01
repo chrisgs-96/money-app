@@ -1,0 +1,7 @@
+<div class="transactions-list" *ngIf="transactions$ | async">
+  <ng-component *ngIf="groupedTransactions$ | async as groupedTransactions">
+    <app-transactions-group *ngFor="let transactionsMonth of groupedTransactions?.dateOrder"
+      [transactions]="groupedTransactions.transactions[transactionsMonth]">
+    </app-transactions-group>
+  </ng-component>
+</div>

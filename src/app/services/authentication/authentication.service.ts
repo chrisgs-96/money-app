@@ -9,23 +9,22 @@ import { combineLatest, take } from 'rxjs';
 export class AuthenticationService {
   constructor(
     public afAuth: AngularFireAuth // Inject Firebase auth service
-  ) {}
+  ) {
+    console.log('Check authentication.service.ts');
+  }
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new GoogleAuthProvider());
   }
   // Auth logic to run auth providers
   AuthLogin(provider: any) {
-    console.log('provider in authentication.service.ts type');
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
         return '1';
-        console.log('You have been successfully logged in!');
       })
       .catch((error) => {
         return '2';
-        console.log(error);
       });
   }
 

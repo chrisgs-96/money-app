@@ -1,0 +1,13 @@
+<ng-container *ngIf="transactionsGrouped$ | async as transactionsGrouped">
+  <div class="page-container mt-24" *ngFor="let date of transactionsGrouped.dateOrder">
+    <span class="page-title special">{{ parseDate(date) }}</span>
+    <div class="grid" *ngIf="categories$ | async as categories">
+      <div *ngFor="let category of categories">
+        <span class="bold">{{ category.name }}: </span>
+        <span>
+          {{(transactionsGrouped?.transactions?.[date]?.summary?.[category.name] || 0) | currency:
+          "EUR":"symbol":"1.2-2" }}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -1,4 +1,4 @@
-import { TransactionModel } from "src/app/models/transaction.model";
+import { TransactionModel } from "./transactions.model";
 
 export namespace Transactions {
   export interface Action {}

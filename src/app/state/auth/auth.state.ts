@@ -41,6 +41,11 @@ export class AuthState {
   static isLoggedIn(state: AuthStateModel) {
     return state.isLoggedIn;
   }
+  
+  @Selector()
+  static email(state: AuthStateModel) {
+    return state.email;
+  }
 
   @Action(AuthActions.GetUserStatus)
   getUserStatus(ctx: StateContext<AuthStateModel>) {
@@ -119,7 +124,7 @@ export class AuthState {
     this.authService
       .GoogleAuth()
       .then(() => {
-        this.authService  
+        this.authService
           .GetUserState()
           .pipe(take(1))
           .subscribe((data) => {

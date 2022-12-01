@@ -1,0 +1,7 @@
+<div class="modal-background" *ngIf="isVisible$ | async">
+  <div class="clickable-overlay" (click)="hide()"></div>
+  <div class="modal-box">
+    <span class="text-content">{{ (message$ | async) || 'An error occured' }}</span>
+    <button (click)="hide()">Okay</button>
+  </div>
+</div>

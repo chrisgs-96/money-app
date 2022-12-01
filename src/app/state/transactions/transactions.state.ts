@@ -1,4 +1,4 @@
-import { State, Action, StateContext, Select, Store } from '@ngxs/store';
+import { State, Action, StateContext, Select, Store, Selector } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { Transactions } from './transactions.action';
 import { pipe } from 'rxjs';
@@ -9,7 +9,7 @@ import {
   GroupedTransactionsModel,
   TransactionModel,
   TransactionsStateModel,
-} from 'src/app/models/transaction.model';
+} from 'src/app/state/transactions/transactions.model';
 
 @State<TransactionsStateModel>({
   name: 'transactions',
@@ -39,6 +39,16 @@ export class TransactionsState {
         message,
       })
     );
+  }
+
+  @Selector()
+  static transactionsGrouped(state: TransactionsStateModel) {
+    return state.transactionsGrouped;
+  }
+
+  @Selector()
+  static transactionsRaw(state: TransactionsStateModel) {
+    return state.transactionsRaw;
   }
 
   @Action(Transactions.Add)

@@ -1,4 +1,4 @@
-import { State, Action, StateContext, Select, Store } from '@ngxs/store';
+import { State, Action, StateContext, Select, Store, Selector } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { pipe } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -6,10 +6,7 @@ import { Categories } from './categories.action';
 import { state } from '@angular/animations';
 import { Loader } from '../loader/loader.action';
 import { Modal } from '../modal/modal.action';
-import {
-  CategoriesStateModel,
-  CategoryModel,
-} from 'src/app/models/transaction.model';
+import { CategoriesStateModel, CategoryModel, } from './categories.model';
 
 @State<CategoriesStateModel>({
   name: 'categories',
@@ -19,7 +16,12 @@ import {
 })
 @Injectable()
 export class CategoriesState {
-  constructor(private db: AngularFirestore, private store: Store) {}
+  constructor(private db: AngularFirestore, private store: Store) { }
+
+  @Selector()
+  static categories(state: CategoriesStateModel) {
+    return state.categories;
+  }
 
   generateUniqSerial(): string {
     return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, (c) => {

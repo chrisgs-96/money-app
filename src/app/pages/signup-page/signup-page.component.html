@@ -1,0 +1,28 @@
+<div class="page-container more-padding-top">
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+    <span class="page-title">Sign Up</span>
+    <div class="input-container-styled mt-16">
+      <label class="styled" for="email">Email</label>
+      <input class="styled" type="email" formControlName="email" name="email" />
+      <span *ngIf="signUpForm.controls.email.touched &&signUpForm.controls.email.errors" class="styled-error-text">
+        Please enter a valid e-mail address</span>
+    </div>
+    <div class="input-container-styled mt-24">
+      <label class="styled" for="password">Password</label>
+      <input class="styled" type="password" formControlName="password" name="password" />
+      <span *ngIf="signUpForm.controls.email.touched &&signUpForm.controls.email.errors" class="styled-error-text">
+        Password length must be at least 4 characters</span>
+    </div>
+    <div class="input-container-styled mt-24">
+      <label class="styled" for="passwordConfirmation">Password Verification</label>
+      <input class="styled" type="password" formControlName="passwordConfirmation" name="passwordConfirmation" />
+      <span *ngIf="signUpForm.controls.passwordConfirmation.touched &&signUpForm.controls.passwordConfirmation.errors"
+        class="styled-error-text">
+        This field must be the same as the password field</span>
+    </div>
+    <div class="buttons-flex">
+      <button type="button" class="secondary" (click)="goToSignInPage()">Cancel</button>
+      <button>Sign Up</button>
+    </div>
+  </form>
+</div>

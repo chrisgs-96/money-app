@@ -1,0 +1,31 @@
+<div class="page-container more-padding-top">
+  <form [formGroup]="loginForm" (ngSubmit)="signIn()">
+    <span class="page-title">Sign In</span>
+    <div class="input-container-styled mt-16">
+      <label class="styled" for="email">Email</label>
+      <input class="styled" type="email" formControlName="email" name="email" />
+      <span *ngIf="
+        loginForm.controls.email.touched &&
+        loginForm.controls.email.errors
+      " class="styled-error-text">
+        Please enter a valid e-mail address</span>
+    </div>
+    <div class="input-container-styled mt-24">
+      <label class="styled" for="password">Password</label>
+      <input class="styled" type="password" formControlName="password" name="password" />
+      <span *ngIf="
+        loginForm.controls.password.touched &&
+        loginForm.controls.password.errors
+      " class="styled-error-text">
+        Password length must be at least 4 characters</span>
+    </div>
+    <div class="buttons-flex">
+      <button type="submit">Sign In</button>
+      <button type="button" class="secondary" (click)="goToSignUpPage()">Sign Up</button>
+    </div>
+    <button type="button" class="mt-8 google" (click)="googleLogin()">
+      <div class="icon"></div>
+      Sign in with Google
+    </button>
+  </form>
+</div>

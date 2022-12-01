@@ -4,7 +4,7 @@ import { pipe } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Modal } from './modal.action';
 import { state } from '@angular/animations';
-import { ModalStateModel } from 'src/app/models/transaction.model';
+import { ModalPayload, ModalStateModel } from './modal.model';
 
 @State<ModalStateModel>({
   name: 'modal',
@@ -15,12 +15,12 @@ import { ModalStateModel } from 'src/app/models/transaction.model';
 })
 @Injectable()
 export class ModalState {
-  constructor(private db: AngularFirestore) {}
+  constructor(private db: AngularFirestore) { }
 
   @Action(Modal.Show)
   showModal(
     ctx: StateContext<ModalStateModel>,
-    data: { payload: { message: string } }
+    data: ModalPayload
   ) {
     const state = ctx.getState();
     ctx.setState({

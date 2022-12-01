@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriesManagementComponent } from './categories-management/categories-management.component';
+import { CategoriesManagementComponent } from './pages/categories-management/categories-management.component';
 import { AuthGuard } from './guardians/AuthGuard';
 import { BlockWhenLoggedGuard } from './guardians/BlockWhenLoggedGuard';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { NewTransactionComponent } from './new-transaction/new-transaction.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
-import { TransactionsPageComponent } from './transactions-page/transactions-page.component';
-import { TransactionsSummaryComponent } from './transactions-summary/transactions-summary.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { NewTransactionComponent } from './pages/new-transaction/new-transaction.component';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { TransactionsPageComponent } from './pages/transactions-page/transactions-page.component';
+import { TransactionsSummaryComponent } from './pages/transactions-summary/transactions-summary.component';
 
 const routes: Routes = [
   {

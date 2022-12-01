@@ -4,7 +4,7 @@ import { pipe } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Loader } from './loader.action';
 import { state } from '@angular/animations';
-import { LoaderStateModel } from 'src/app/models/transaction.model';
+import { LoaderStateModel } from './loader.model';
 
 @State<LoaderStateModel>({
   name: 'loader',

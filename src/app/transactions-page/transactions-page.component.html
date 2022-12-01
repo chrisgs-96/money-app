@@ -1,8 +1,0 @@
-<div class="transactions-list" *ngIf="transactions">
-
-  <app-transactions-group
-    *ngFor="let transactionsMonth of groupedTransactions?.dateOrder"
-    [transactions]="groupedTransactions.transactions[transactionsMonth]"
-  >
-  </app-transactions-group>
-</div>

@@ -1,4 +1,4 @@
-import { CategoryModel } from "src/app/models/transaction.model";
+import { CategoryModel } from "./categories.model";
 
 export namespace Categories {
   export interface Action {}
